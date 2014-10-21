@@ -12,6 +12,10 @@ package javaapplication1;
  */
 public class main {
     public static void main(String[] args) {
+<<<<<<< HEAD
         System.out.println("ADBO");
+=======
+        System.out.println("Anton");
+>>>>>>> origin/master
     }
 }
