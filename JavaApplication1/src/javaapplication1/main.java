@@ -14,5 +14,6 @@ public class main {
     public static void main(String[] args) {
         System.out.println("ADBO");
         System.out.println("Anton");
+	//kapan nih mau ngerjain tugsny gua baru jalan internetnya wkwk
     }
 }
