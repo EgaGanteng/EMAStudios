@@ -9,29 +9,55 @@ package world;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
 import sun.security.action.GetLongAction;
 
 /**
  *
  * @author i13047
  */
-public class Player implements Runnable{
-
+public class Player{
+    
     private Point location;
+    private boolean isDead;
+    private BufferedImage chip;
+    public static int ATAS = 0, KANAN = 1, BAWAH = 2, KIRI = 3;
 
     public int getLocationX() {
         return location.x;
     }
-    public int GetLocationY(){
+
+    public Player(int x,int y) {
+        this.location = new Point(x, y);
+        this.isDead = false;
+    }
+
+    public BufferedImage getImageChip() {
+        return chip;
+    }
+
+    public int GetLocationY() {
         return location.y;
     }
     
-    public void move(int direction){
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void move(int direction) {
+        if (direction == ATAS) {
+            this.location.y--;
+        } else if (direction == KANAN) {
+            this.location.x++;
+        } else if(direction == BAWAH){
+            this.location.y++;
+        }else if(direction== KIRI){
+            this.location.x--;
+        }
     }
-    @Override
-    public void run() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+    public void setIsDead(boolean isDead) {
+        this.isDead = isDead;
     }
-    
+
+    public boolean isIsDead() {
+        return isDead;
+    }
+
 }

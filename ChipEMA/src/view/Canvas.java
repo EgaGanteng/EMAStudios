@@ -19,7 +19,7 @@ import javax.swing.JPanel;
 public class Canvas extends JFrame{
     private BufferedImage myImage;
     public static int WIDTH = 1024;
-    public static int HEIGHT = 800;
+    public static int HEIGHT = 600;
     
     public Canvas(KeyListener keyListener){
         this.addKeyListener(keyListener);
