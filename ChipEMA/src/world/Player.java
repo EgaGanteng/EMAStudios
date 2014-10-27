@@ -15,7 +15,7 @@ import sun.security.action.GetLongAction;
  *
  * @author i13047
  */
-public class Player implements Runnable,KeyListener{
+public class Player implements Runnable{
 
     private Point location;
 
@@ -31,21 +31,6 @@ public class Player implements Runnable,KeyListener{
     }
     @Override
     public void run() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void keyTyped(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
