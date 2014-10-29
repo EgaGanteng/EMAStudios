@@ -18,18 +18,18 @@ import static world.map.Grid.CANVAS_WIDTH;
  *
  * @author i13047
  */
-public class GridFinish extends Grid {
+public class GridWall extends Grid {
 
-    private String imgFileName = "image/finish.jpg";
+    private String imgFileName = "image/wall.jpg";
     private Object imgUrl;
     
-    public GridFinish() {
-        this.nama = "Finish";
-        this.isSteppable = true;
-        this.isEditable = false; 
+    public GridWall() {
+        this.nama = "Dinding";
+        this.isSteppable = false;
+        this.isEditable = false;
         
         this.imgUrl = getClass().getClassLoader().getResource(imgFileName);
-    }
 
+    }
     
 }

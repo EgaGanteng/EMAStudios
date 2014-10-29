@@ -19,7 +19,7 @@ import static world.map.Grid.CANVAS_WIDTH;
  */
 public class GridIC extends Grid {
 
-    private String imgFileName = "ic.jpg";
+    private String imgFileName = "image/ic.jpg";
     private Object imgUrl;
     
     public GridIC() {
@@ -27,24 +27,7 @@ public class GridIC extends Grid {
         this.isSteppable = true;
         this.isEditable = true;
         
-        URL imgUrl = getClass().getClassLoader().getResource(imgFileName);
-        if(imgUrl ==null){
-            System.err.println("Couldn't find file: "+imgFileName);
-        }
-        else{
-            try{
-                img = ImageIO.read(imgUrl);
-            }
-            catch (IOException ex){
-                ex.printStackTrace();
-            }
-        }
-        setPreferredSize(new Dimension(CANVAS_WIDTH,CANVAS_HEIGHT));
+        this.imgUrl = getClass().getClassLoader().getResource(imgFileName);
+        
     }
-
-    protected void paintComponent(Graphics g, int x,int y) {
-        super.paintComponent(g);
-        g.drawImage(img, x, y, null); // see javadoc for more info on the parameters            
-    }
-
 }

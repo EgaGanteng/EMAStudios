@@ -20,7 +20,7 @@ import static world.map.Grid.CANVAS_WIDTH;
  */
 public class GridLantaiKosong extends Grid {
 
-    private String imgFileName = "lantaikosong.jpg";
+    private String imgFileName = "image/lantaikosong.jpg";
     private Object imgUrl;
     
     public GridLantaiKosong() {
@@ -29,23 +29,7 @@ public class GridLantaiKosong extends Grid {
         this.isEditable = false; 
     
         
-        URL imgUrl = getClass().getClassLoader().getResource(imgFileName);
-        if(imgUrl ==null){
-            System.err.println("Couldn't find file: "+imgFileName);
-        }
-        else{
-            try{
-                img = ImageIO.read(imgUrl);
-            }
-            catch (IOException ex){
-                ex.printStackTrace();
-            }
-        }
-        setPreferredSize(new Dimension(CANVAS_WIDTH,CANVAS_HEIGHT));
+        this.imgUrl = getClass().getClassLoader().getResource(imgFileName);
     }
-
-    protected void paintComponent(Graphics g, int x,int y) {
-        super.paintComponent(g);
-        g.drawImage(img, x, y, null); // see javadoc for more info on the parameters            
-    }
+        
 }
