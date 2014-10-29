@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/D:/kuliah/smt%203/adbo/EMAStudios/ChipEMA/src/world/map/Grid.java</file>
             <file>file:/D:/kuliah/smt%203/adbo/EMAStudios/ChipEMA/src/world/map/GridWall.java</file>
             <file>file:/D:/kuliah/smt%203/adbo/EMAStudios/ChipEMA/src/world/map/GridKey.java</file>
@@ -14,6 +15,13 @@
             <file>file:/D:/kuliah/smt%203/adbo/EMAStudios/ChipEMA/src/world/map/GridIC.java</file>
             <file>file:/D:/kuliah/smt%203/adbo/EMAStudios/ChipEMA/src/world/map/GridFire.java</file>
             <file>file:/D:/kuliah/smt%203/adbo/EMAStudios/ChipEMA/src/world/map/GridBarrier.java</file>
+=======
+            <file>file:/D:/GitHub/EMAStudios/ChipEMA/src/world/map/Grid.java</file>
+            <file>file:/D:/GitHub/EMAStudios/ChipEMA/src/world/Stash.java</file>
+            <file>file:/D:/GitHub/EMAStudios/ChipEMA/src/controller/Controller.java</file>
+            <file>file:/D:/GitHub/EMAStudios/ChipEMA/src/view/Canvas.java</file>
+            <file>file:/D:/GitHub/EMAStudios/ChipEMA/src/world/Player.java</file>
+>>>>>>> 5e6031db37cdd15082c960cfd9c976d448f64297
         </group>
     </open-files>
 </project-private>
