@@ -6,30 +6,21 @@
 
 package world.map;
 
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.io.IOException;
-import java.net.URL;
-import javax.imageio.ImageIO;
-import static world.map.Grid.CANVAS_HEIGHT;
-import static world.map.Grid.CANVAS_WIDTH;
-
 /**
  *
- * @author i13047
+ * @author Michael kinsey
  */
-public class GridFinish extends Grid {
+public class GridKey extends Grid {
 
-    private String imgFileName = "image/finish.jpg";
+    private String imgFileName = "image/key.jpg";
     private Object imgUrl;
     
-    public GridFinish() {
-        this.nama = "Finish";
+    public GridKey() {
+        this.nama = "Key";
         this.isSteppable = true;
         this.isEditable = false; 
         
         this.imgUrl = getClass().getClassLoader().getResource(imgFileName);
     }
-
-    
 }
+
