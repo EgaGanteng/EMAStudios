@@ -45,7 +45,7 @@ public class Board {
     public Board(int level){
         this.level = level;
         this.map=new Grid[10][10];
-        this.stats=new Status();
+        this.stats=new Status(10,20,30,5);
         this.inventory=new Stash();
         this.setMap();
     }
