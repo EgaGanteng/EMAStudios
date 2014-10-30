@@ -6,20 +6,27 @@
 
 package world.map;
 
+import java.io.IOException;
+import java.net.URL;
+import javax.imageio.ImageIO;
+
 /**
  *
  * @author Michael kinsey
  */
 public class GridDoor extends Grid {
 
-    private String imgFileName = "image/door.jpg";
-    private Object imgUrl;
-    
     public GridDoor() {
         this.nama = "Door";
+        this.imgFileName = "image/door.jpg";
         this.isSteppable = true;
         this.isEditable = false; 
-        
-        this.imgUrl = getClass().getClassLoader().getResource(imgFileName);
+        URL imgUrl=getClass().getClassLoader().getResource(imgFileName);
+        try{
+            this.img=ImageIO.read(imgUrl);
+        }
+        catch(IOException ex){
+            ex.printStackTrace();
+        }
     }
 }
