@@ -6,6 +6,8 @@
 
 package world;
 
+import interfaces.Drawable;
+import java.awt.Graphics;
 import world.map.Grid;
 import world.map.GridBarrier;
 import world.map.GridDoor;
@@ -20,7 +22,7 @@ import world.map.GridWall;
  *
  * @author i13047
  */
-public class Board {
+public class Board implements Drawable{
     private Grid[][] map;
     private int level;
     private Stash inventory;
@@ -48,6 +50,18 @@ public class Board {
         this.stats=new Status();
         this.inventory=new Stash();
         this.setMap();
+    }
+    
+    @Override
+    public void draw(Graphics g) {
+        int i,j;
+        for(i=0;i<map.length;i++)
+        {
+            for(j=0;j<map[i].length;j++)
+            {
+                g.drawImage(map[i][j].getImage(),i*50,j*50,null);
+            }
+        }
     }
     
     public void setMap()
@@ -189,5 +203,5 @@ public class Board {
             
         }
     }
-    
+
 }

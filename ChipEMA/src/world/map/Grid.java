@@ -5,6 +5,8 @@
  */
 package world.map;
 
+import interfaces.Drawable;
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
 
@@ -14,29 +16,30 @@ import javax.swing.JPanel;
  */
 public abstract class Grid{
     protected BufferedImage img;
+    protected String imgFileName;
     protected String nama;
     protected boolean isSteppable;
     protected boolean isEditable;
     public static final int CANVAS_WIDTH = 65;
     public static final int CANVAS_HEIGHT = 65;
+    
     public Grid() {
     }
+    
+    public BufferedImage getImage()
+    {
+        return this.img;
+    }
 
-
-    public boolean isIsSteppable() {
+    public boolean isSteppable() {
         return isSteppable;
     }
 
-    public boolean isIsEditable() {
+    public boolean isEditable() {
         return isEditable;
-    }
-    
-    public BufferedImage getImg(){
-        return img;
     }
 
     public String getNama(){
         return nama;
     }
-    
 }

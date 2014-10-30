@@ -71,22 +71,22 @@ public class Controller implements Runnable, KeyListener {
     @Override
     public void keyReleased(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_UP) {
-            if (papan.getMap()[player1.getLocationX()][player1.getLocationY() - 1].isSteppable) {
+            if (papan.getMap()[player1.getLocationX()][player1.getLocationY() - 1].isSteppable()) {
                 player1.move(Player.ATAS);
             }
         }
         if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            if (papan.getMap()[player1.getLocationX()][player1.getLocationY() + 1].isSteppable) {
+            if (papan.getMap()[player1.getLocationX()][player1.getLocationY() + 1].isSteppable()) {
                 player1.move(Player.BAWAH);
             }
         }
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            if (papan.getMap()[player1.getLocationX()+1][player1.getLocationY()].isSteppable) {
+            if (papan.getMap()[player1.getLocationX()+1][player1.getLocationY()].isSteppable()) {
                 player1.move(Player.KANAN);
             }
         }
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            if (papan.getMap()[player1.getLocationX()-1][player1.getLocationY()].isSteppable) {
+            if (papan.getMap()[player1.getLocationX()-1][player1.getLocationY()].isSteppable()) {
                 player1.move(Player.KIRI);
             }
         }

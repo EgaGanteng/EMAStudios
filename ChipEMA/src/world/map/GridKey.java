@@ -6,21 +6,29 @@
 
 package world.map;
 
+import java.awt.Color;
+import java.io.IOException;
+import java.net.URL;
+import javax.imageio.ImageIO;
+
 /**
  *
  * @author Michael kinsey
  */
 public class GridKey extends Grid {
-
-    private String imgFileName = "image/key.jpg";
-    private Object imgUrl;
     
     public GridKey() {
         this.nama = "Key";
         this.isSteppable = true;
-        this.isEditable = false; 
-        
-        this.imgUrl = getClass().getClassLoader().getResource(imgFileName);
+        this.isEditable = false;
+        this.imgFileName = "image/key.jpg";
+        URL imgUrl=getClass().getClassLoader().getResource(imgFileName);
+        try{
+            this.img=ImageIO.read(imgUrl);
+        }
+        catch(IOException ex){
+            ex.printStackTrace();
+        }
     }
 }
 

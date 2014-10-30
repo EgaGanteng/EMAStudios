@@ -19,16 +19,19 @@ import static world.map.Grid.CANVAS_WIDTH;
  * @author i13047
  */
 public class GridWall extends Grid {
-
-    private String imgFileName = "image/wall.jpg";
-    private Object imgUrl;
     
     public GridWall() {
         this.nama = "Dinding";
         this.isSteppable = false;
         this.isEditable = false;
-        
-        this.imgUrl = getClass().getClassLoader().getResource(imgFileName);
+        this.imgFileName = "image/wall.jpg";
+        URL imgUrl=getClass().getClassLoader().getResource(imgFileName);
+        try{
+            this.img=ImageIO.read(imgUrl);
+        }
+        catch(IOException ex){
+            ex.printStackTrace();
+        }
 
     }
     
