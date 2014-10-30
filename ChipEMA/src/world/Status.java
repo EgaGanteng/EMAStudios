@@ -96,6 +96,6 @@ public class Status implements ActionListener{
          * 
          * Kalau ada compiled error gara" kelas lain klik Run anyway aj.
          */
-        Status obj = new Status(0,20,25,5);
+        Status obj = new Status(0,24,2,5);
     }
 }
