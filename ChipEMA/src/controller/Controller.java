@@ -6,6 +6,7 @@
 package controller;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.logging.Level;
@@ -27,24 +28,30 @@ public class Controller implements Runnable, KeyListener {
     private Board papan;
     private Status stat;
     private Stash inventory;
-    private boolean isRunning;
+    private boolean isFinish;
     private Thread thread;
-    private Graphics g;
 
-    public Controller() {
-        isRunning = false;
-        g = canvas.getMyGraphics();
-        canvas = new Canvas(this);
+    public Controller(Canvas c) {
+        isFinish = false;
+        this.papan = new Board(1);
+        stat = papan.getStats();
+        player1 = new Player(6, 8);
+        inventory = papan.getInventory();
+        canvas = c;
         thread = new Thread(this);
     }
 
+    public void drawAll(Graphics g){
+        player1.draw(g);
+    }
+    
     public void start() {
-        isRunning = true;
+        isFinish = false;
         thread.start();
     }
 
     public void stop() {
-        this.isRunning = false;
+        this.isFinish = true;
         try {
             this.thread.join();
         } catch (InterruptedException ex) {
@@ -63,14 +70,45 @@ public class Controller implements Runnable, KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (e.getKeyCode() == KeyEvent.VK_UP) {
+            if (papan.getMap()[player1.getLocationX()][player1.getLocationY() - 1].isSteppable) {
+                player1.move(Player.ATAS);
+            }
+        }
+        if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+            if (papan.getMap()[player1.getLocationX()][player1.getLocationY() + 1].isSteppable) {
+                player1.move(Player.BAWAH);
+            }
+        }
+        if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+            if (papan.getMap()[player1.getLocationX()+1][player1.getLocationY()].isSteppable) {
+                player1.move(Player.KANAN);
+            }
+        }
+        if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+            if (papan.getMap()[player1.getLocationX()-1][player1.getLocationY()].isSteppable) {
+                player1.move(Player.KIRI);
+            }
+        }
     }
 
     @Override
     public void run() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//        while (isRunning) {
-//        }
+        while (!player1.isIsDead()||!isFinish){
+            if (papan.getMap()[player1.getLocationX()][player1.getLocationY()].getNama().equals("Fire")) {
+                player1.setIsDead(true);
+            }
+            if (papan.getMap()[player1.getLocationX()][player1.getLocationY()].getNama().equals("Finish")) {
+                isFinish = true;
+            }
+            if (papan.getMap()[player1.getLocationX()][player1.getLocationY()].getNama().equals("IC")) {
+                stat.decreaseChip(1);
+            }
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException ex) {
+            }
+        }
     }
 
 }

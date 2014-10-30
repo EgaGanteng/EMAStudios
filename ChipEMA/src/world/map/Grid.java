@@ -19,10 +19,17 @@ public abstract class Grid{
     protected boolean isEditable;
     public static final int CANVAS_WIDTH = 65;
     public static final int CANVAS_HEIGHT = 65;
-
     public Grid() {
     }
 
+
+    public boolean isIsSteppable() {
+        return isSteppable;
+    }
+
+    public boolean isIsEditable() {
+        return isEditable;
+    }
     
     public BufferedImage getImg(){
         return img;

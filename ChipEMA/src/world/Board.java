@@ -25,12 +25,29 @@ public class Board {
     private int level;
     private Stash inventory;
     private Status stats;
+
+    public Grid[][] getMap() {
+        return map;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public Stash getInventory() {
+        return inventory;
+    }
+
+    public Status getStats() {
+        return stats;
+    }
     
     public Board(int level){
         this.level = level;
         this.map=new Grid[10][10];
         this.stats=new Status();
         this.inventory=new Stash();
+        this.setMap();
     }
     
     public void setMap()

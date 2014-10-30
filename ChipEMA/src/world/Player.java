@@ -6,6 +6,9 @@
 
 package world;
 
+import interfaces.Drawable;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -16,7 +19,7 @@ import sun.security.action.GetLongAction;
  *
  * @author i13047
  */
-public class Player{
+public class Player implements Drawable{
     
     private Point location;
     private boolean isDead;
@@ -36,7 +39,7 @@ public class Player{
         return chip;
     }
 
-    public int GetLocationY() {
+    public int getLocationY() {
         return location.y;
     }
     
@@ -58,6 +61,12 @@ public class Player{
 
     public boolean isIsDead() {
         return isDead;
+    }
+
+    @Override
+    public void draw(Graphics g) {
+        Graphics2D g2 = (Graphics2D)g;
+        g2.drawOval(location.x*10, location.y*10,100 , 100);
     }
 
 }

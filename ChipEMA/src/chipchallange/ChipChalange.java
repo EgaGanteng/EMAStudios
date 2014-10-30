@@ -7,6 +7,9 @@
 package chipchallange;
 
 import controller.Controller;
+import java.awt.Dimension;
+import javax.swing.JFrame;
+import view.Canvas;
 
 /**
  * Method inti yang menjalankan Game.
@@ -14,7 +17,12 @@ import controller.Controller;
  */
 public class ChipChalange {
     public static void main(String[] args) {
-        Controller c = new Controller();
-        c.start();
+        JFrame f = new JFrame();
+        Canvas ra = new Canvas();
+        
+        f.getContentPane().add("Center", ra);
+        f.pack();
+        f.setSize(new Dimension(800, 480));
+        f.setVisible(true);
     }
 }
