@@ -7,6 +7,7 @@
 package world;
 
 import interfaces.Drawable;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -66,7 +67,8 @@ public class Player implements Drawable{
     @Override
     public void draw(Graphics g) {
         Graphics2D g2 = (Graphics2D)g;
-        g2.drawOval(location.x*10, location.y*10,100 , 100);
+        g2.setColor(Color.BLUE);
+        g2.drawOval(location.x, location.y,100 , 100);
     }
 
 }

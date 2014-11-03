@@ -24,7 +24,7 @@ public class GridFinish extends Grid {
         this.nama = "Finish";
         this.isSteppable = true;
         this.isEditable = false; 
-        this.imgFileName = "image/finish.jpg";
+        this.imgFileName = "image/finnish.jpg";
         URL imgUrl=getClass().getClassLoader().getResource(imgFileName);
         try{
             this.img=ImageIO.read(imgUrl);

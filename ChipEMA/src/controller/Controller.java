@@ -41,8 +41,8 @@ public class Controller implements Runnable, KeyListener {
         thread = new Thread(this);
     }
 
-    public void drawAll(Graphics g){
-        player1.draw(g);
+    public void drawAll(){
+        player1.draw(canvas.getImg().getGraphics());
     }
     
     public void start() {
@@ -95,15 +95,16 @@ public class Controller implements Runnable, KeyListener {
     @Override
     public void run() {
         while (!player1.isIsDead()||!isFinish){
-            if (papan.getMap()[player1.getLocationX()][player1.getLocationY()].getNama().equals("Fire")) {
-                player1.setIsDead(true);
-            }
-            if (papan.getMap()[player1.getLocationX()][player1.getLocationY()].getNama().equals("Finish")) {
-                isFinish = true;
-            }
-            if (papan.getMap()[player1.getLocationX()][player1.getLocationY()].getNama().equals("IC")) {
-                stat.decreaseChip(1);
-            }
+//            if (papan.getMap()[player1.getLocationX()][player1.getLocationY()].getNama().equals("Fire")) {
+//                player1.setIsDead(true);
+//            }
+//            if (papan.getMap()[player1.getLocationX()][player1.getLocationY()].getNama().equals("Finish")) {
+//                isFinish = true;
+//            }
+//            if (papan.getMap()[player1.getLocationX()][player1.getLocationY()].getNama().equals("IC")) {
+//                stat.decreaseChip(1);
+//            }
+            player1.move(Player.KANAN);;
             try {
                 Thread.sleep(10);
             } catch (InterruptedException ex) {
