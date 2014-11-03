@@ -104,9 +104,10 @@ public class Controller implements Runnable, KeyListener {
 //            if (papan.getMap()[player1.getLocationX()][player1.getLocationY()].getNama().equals("IC")) {
 //                stat.decreaseChip(1);
 //            }
-            player1.move(Player.KANAN);;
+            player1.move(Player.KANAN);
+            canvas.repaint();
             try {
-                Thread.sleep(10);
+                Thread.sleep(16);
             } catch (InterruptedException ex) {
             }
         }

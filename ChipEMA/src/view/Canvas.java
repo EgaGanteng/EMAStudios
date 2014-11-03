@@ -22,7 +22,6 @@ public class Canvas extends JPanel {
     private BufferedImage img;
     public Canvas() {
         ctrl = new Controller(this);
-        img = new BufferedImage(1024, 600, BufferedImage.BITMASK);
         Thread thread = new Thread(ctrl);
         thread.start();
     }
@@ -34,8 +33,8 @@ public class Canvas extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+        img = new BufferedImage(1024, 600, BufferedImage.BITMASK);
         ctrl.drawAll();
         g.drawImage(img, 0, 0, this);
-        img = new BufferedImage(1024, 600, BufferedImage.BITMASK);
     }
 }

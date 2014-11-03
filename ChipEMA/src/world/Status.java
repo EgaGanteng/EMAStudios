@@ -23,12 +23,12 @@ public class Status implements ActionListener{
 
     
     public Status(int menit,int detik,int miliDetik,int chipLeft){
-        this.minutes = menit;
-        this.seconds = detik;
-        this.miliSeconds = miliDetik;
-        this.chipLeft = chipLeft;
-        timer = new Timer(10,this);
-        timer.start();
+//        this.minutes = menit;
+//        this.seconds = detik;
+//        this.miliSeconds = miliDetik;
+//        this.chipLeft = chipLeft;
+//        timer = new Timer(10,this);
+//        timer.start();
     }
     
     
