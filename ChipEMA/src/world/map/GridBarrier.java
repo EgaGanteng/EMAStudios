@@ -19,15 +19,18 @@ import javax.swing.JFrame;
  * @author i13047
  */
 public class GridBarrier extends Grid {
-
-    private String imgFileName = "image/barrier.jpg";
-    private Object imgUrl;
+    
     public GridBarrier() {
         this.nama = "Barrier";
+        this.imgFileName="image/barrier.jpg";
         this.isSteppable = false;
         this.isEditable = true;
-        
-        this.imgUrl = getClass().getClassLoader().getResource(imgFileName);
-        
+        URL imgUrl=getClass().getClassLoader().getResource(imgFileName);
+        try{
+            this.img=ImageIO.read(imgUrl);
+        }
+        catch(IOException ex){
+            ex.printStackTrace();
+        }  
     }
 }

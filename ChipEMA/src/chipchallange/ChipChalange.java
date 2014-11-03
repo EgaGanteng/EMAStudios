@@ -17,7 +17,7 @@ import view.Canvas;
  */
 public class ChipChalange {
     public static void main(String[] args) {
-        JFrame f = new JFrame();
+        JFrame f = new JFrame("EMA Chip Chalenge");
         Canvas ra = new Canvas();
         
         f.getContentPane().add("Center", ra);

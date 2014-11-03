@@ -19,16 +19,19 @@ import static world.map.Grid.CANVAS_WIDTH;
  * @author i13047
  */
 public class GridFire extends Grid {
-
-    private String imgFileName = "image/fire.jpg";
-    private Object imgUrl;
     
     public GridFire() {
         this.nama = "Fire";
         this.isSteppable = true;
         this.isEditable = false; 
-        
-        this.imgUrl = getClass().getClassLoader().getResource(imgFileName);
+        this.imgFileName = "image/fire.jpg";
+        URL imgUrl=getClass().getClassLoader().getResource(imgFileName);
+        try{
+            this.img=ImageIO.read(imgUrl);
+        }
+        catch(IOException ex){
+            ex.printStackTrace();
+        }
         
     }
 }
