@@ -6,24 +6,29 @@
 package view;
 
 import controller.Controller;
+import interfaces.Drawable;
+import interfaces.Modelled;
 import java.awt.Graphics;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-
 /**
  *
  * @author i13047
  */
 public class Canvas extends JPanel {
-    private Controller ctrl;
+
+    private Modelled ctrl;
     private BufferedImage img;
+
     public Canvas() {
-        ctrl = new Controller(this);
-        Thread thread = new Thread(ctrl);
-        thread.start();
+
+    }
+
+    public void setCtrl(Modelled ctrl) {
+        this.ctrl = ctrl;
     }
 
     public BufferedImage getImg() {
@@ -34,7 +39,7 @@ public class Canvas extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         img = new BufferedImage(1024, 600, BufferedImage.BITMASK);
-        ctrl.drawAll();
+        ctrl.getAllDrawable()[0].drawDefault(img.getGraphics());
         g.drawImage(img, 0, 0, this);
     }
 }

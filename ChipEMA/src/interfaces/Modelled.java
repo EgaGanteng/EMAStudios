@@ -6,14 +6,10 @@
 
 package interfaces;
 
-import java.awt.Graphics;
-
 /**
  *
  * @author Garlzend
  */
-public interface Drawable {
-    public abstract void drawDefault(Graphics g);
-    
-    public abstract void drawAt(Graphics g,int offsetX,int offsetY);
+public interface Modelled {
+    public Drawable[] getAllDrawable();
 }

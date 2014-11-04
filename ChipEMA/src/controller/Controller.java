@@ -5,6 +5,8 @@
  */
 package controller;
 
+import interfaces.Drawable;
+import interfaces.Modelled;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
@@ -21,7 +23,7 @@ import world.Status;
  *
  * @author i13047
  */
-public class Controller implements Runnable, KeyListener {
+public class Controller implements Runnable, KeyListener, Modelled {
 
     private Canvas canvas;
     private Player player1;
@@ -41,10 +43,6 @@ public class Controller implements Runnable, KeyListener {
         thread = new Thread(this);
     }
 
-    public void drawAll(){
-        player1.draw(canvas.getImg().getGraphics());
-    }
-    
     public void start() {
         isFinish = false;
         thread.start();
@@ -81,12 +79,12 @@ public class Controller implements Runnable, KeyListener {
             }
         }
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            if (papan.getMap()[player1.getLocationX()+1][player1.getLocationY()].isSteppable()) {
+            if (papan.getMap()[player1.getLocationX() + 1][player1.getLocationY()].isSteppable()) {
                 player1.move(Player.KANAN);
             }
         }
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            if (papan.getMap()[player1.getLocationX()-1][player1.getLocationY()].isSteppable()) {
+            if (papan.getMap()[player1.getLocationX() - 1][player1.getLocationY()].isSteppable()) {
                 player1.move(Player.KIRI);
             }
         }
@@ -94,7 +92,7 @@ public class Controller implements Runnable, KeyListener {
 
     @Override
     public void run() {
-        while (!player1.isIsDead()||!isFinish){
+        while (!player1.isIsDead() || !isFinish) {
 //            if (papan.getMap()[player1.getLocationX()][player1.getLocationY()].getNama().equals("Fire")) {
 //                player1.setIsDead(true);
 //            }
@@ -107,10 +105,15 @@ public class Controller implements Runnable, KeyListener {
             player1.move(Player.KANAN);
             canvas.repaint();
             try {
-                Thread.sleep(16);
+                Thread.sleep(10);
             } catch (InterruptedException ex) {
             }
         }
     }
 
+    @Override
+    public Drawable[] getAllDrawable() {
+        Drawable[] res = {this.player1,this.papan};
+        return res;
+    }
 }

@@ -53,7 +53,7 @@ public class Board implements Drawable{
     }
     
     @Override
-    public void draw(Graphics g) {
+    public void drawDefault(Graphics g) {
         int i,j;
         for(i=0;i<map.length;i++)
         {
@@ -202,6 +202,11 @@ public class Board implements Drawable{
         {
             
         }
+    }
+
+    @Override
+    public void drawAt(Graphics g, int offsetX, int offsetY) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

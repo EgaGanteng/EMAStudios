@@ -65,10 +65,15 @@ public class Player implements Drawable{
     }
 
     @Override
-    public void draw(Graphics g) {
+    public void drawDefault(Graphics g) {
         Graphics2D g2 = (Graphics2D)g;
         g2.setColor(Color.BLUE);
         g2.drawOval(location.x, location.y,100 , 100);
+    }
+
+    @Override
+    public void drawAt(Graphics g, int offsetX, int offsetY) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
