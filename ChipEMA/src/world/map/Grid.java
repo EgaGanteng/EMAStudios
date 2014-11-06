@@ -8,6 +8,9 @@ package world.map;
 import interfaces.Drawable;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URL;
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 /**
@@ -24,11 +27,25 @@ public abstract class Grid{
     public static final int CANVAS_HEIGHT = 65;
     
     public Grid() {
+        
+    }
+    
+    public void loadImage()
+    {
+        URL imgUrl=getClass().getClassLoader().getResource(imgFileName);
+        try{
+            this.img=ImageIO.read(imgUrl);
+        }
+        catch(IOException ex){
+            ex.printStackTrace();
+        }  
     }
     
     public BufferedImage getImage()
-    {
-        return this.img;
+    {  
+        if(this.img==null){
+            loadImage();}
+            return this.img;
     }
 
     public boolean isSteppable() {

@@ -23,14 +23,6 @@ public class GridIC extends Grid {
         this.nama = "IC";
         this.isSteppable = true;
         this.isEditable = true;
-        this.imgFileName = "image/ic.jpg";
-        URL imgUrl=getClass().getClassLoader().getResource(imgFileName);
-        try{
-            this.img=ImageIO.read(imgUrl);
-        }
-        catch(IOException ex){
-            ex.printStackTrace();
-        }
-        
+        this.imgFileName = "image/ic.jpg";  
     }
 }

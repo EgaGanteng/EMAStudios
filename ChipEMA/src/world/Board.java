@@ -14,7 +14,6 @@ import world.map.GridDoor;
 import world.map.GridFinish;
 import world.map.GridFire;
 import world.map.GridIC;
-import world.map.GridKey;
 import world.map.GridLantaiKosong;
 import world.map.GridWall;
 
@@ -71,7 +70,7 @@ public class Board implements Drawable{
             /**
              * 0 1 2 3 4 5 6 7 8 9
              * W W W W W W W W W W 0
-             * W . B C . . W K F W 1
+             * W . B C . . W . F W 1
              * W E W . . . W . . W 2
              * W W W W W . W F . W 3
              * W . . C W . . . . W 4
@@ -158,7 +157,7 @@ public class Board implements Drawable{
             
             this.map[1][2] = new GridBarrier(); // barrier di baris 1 kolom 2
             this.map[2][1] = new GridFinish(); // Finnish di baris 2 kolom 1
-            this.map[1][7] = new GridKey(); // Key di baris 1 kolom 7
+            this.map[1][7] = new GridLantaiKosong(); // Key di baris 1 kolom 7
             this.map[7][8] = new GridDoor(); // Door di baris 7 kolom 8
             /**
              * Wall di baris 3 kolom 1-4.

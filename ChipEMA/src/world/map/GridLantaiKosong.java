@@ -25,13 +25,6 @@ public class GridLantaiKosong extends Grid {
         this.isSteppable = true;
         this.isEditable = false; 
         this.imgFileName = "image/lantaikosong.jpg";
-        URL imgUrl=getClass().getClassLoader().getResource(imgFileName);
-        try{
-            this.img=ImageIO.read(imgUrl);
-        }
-        catch(IOException ex){
-            ex.printStackTrace();
-        }
     }
         
 }

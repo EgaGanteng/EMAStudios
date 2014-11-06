@@ -24,14 +24,6 @@ public class GridFire extends Grid {
         this.nama = "Fire";
         this.isSteppable = true;
         this.isEditable = false; 
-        this.imgFileName = "image/fire.jpg";
-        URL imgUrl=getClass().getClassLoader().getResource(imgFileName);
-        try{
-            this.img=ImageIO.read(imgUrl);
-        }
-        catch(IOException ex){
-            ex.printStackTrace();
-        }
-        
+        this.imgFileName = "image/fire.jpg";   
     }
 }

@@ -21,12 +21,5 @@ public class GridDoor extends Grid {
         this.imgFileName = "image/door.jpg";
         this.isSteppable = true;
         this.isEditable = false; 
-        URL imgUrl=getClass().getClassLoader().getResource(imgFileName);
-        try{
-            this.img=ImageIO.read(imgUrl);
-        }
-        catch(IOException ex){
-            ex.printStackTrace();
-        }
     }
 }

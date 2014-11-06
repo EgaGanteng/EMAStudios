@@ -25,13 +25,6 @@ public class GridFinish extends Grid {
         this.isSteppable = true;
         this.isEditable = false; 
         this.imgFileName = "image/finnish.jpg";
-        URL imgUrl=getClass().getClassLoader().getResource(imgFileName);
-        try{
-            this.img=ImageIO.read(imgUrl);
-        }
-        catch(IOException ex){
-            ex.printStackTrace();
-        }
     }
 
     

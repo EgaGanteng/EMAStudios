@@ -25,14 +25,6 @@ public class GridWall extends Grid {
         this.isSteppable = false;
         this.isEditable = false;
         this.imgFileName = "image/wall.jpg";
-        URL imgUrl=getClass().getClassLoader().getResource(imgFileName);
-        try{
-            this.img=ImageIO.read(imgUrl);
-        }
-        catch(IOException ex){
-            ex.printStackTrace();
-        }
-
     }
     
 }

@@ -6,50 +6,89 @@
 
 package world;
 
-import world.map.Grid;
-import world.map.GridLantaiKosong;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+import java.util.Vector;
 
 /**
  *
  * @author i13047
  */
 public class Stash {
-    private Grid[][] inventoryList;
+    private HashMap<String,Integer> inventoryList;
+    /**
+     * digunakan untuk daftar semua item yang ada di dalam stash
+     */
+    private Vector isiStash;
 
     public Stash() {
-        inventoryList = new Grid[2][4];
-        for (int i = 0; i < inventoryList.length; i++) {
-            for (int j = 0; j < inventoryList[i].length; j++) {
-                inventoryList[i][j] = new GridLantaiKosong();
+        this.inventoryList=new HashMap<String,Integer>();
             }
-        }
+        
         /*
         kayaknya butuh, tempat penyimpanan baru deh,yang buat nyimpen letak2 inventorynya
         biar ntar bisa di ambil
         */
-    }
+    
     /**
      * Method untuk menambahkan inventory baru dalam stash
      */
-    public void addInventory(){
-        
+    public void addInventory(Item item){
+        if(!this.inventoryList.containsKey(item.namaItem))
+        {
+            this.inventoryList.put(item.namaItem,1);
+        }
+        else
+        {
+            this.inventoryList.put(item.namaItem,this.inventoryList.get(item.namaItem)+1);
+        }
     }
     
     /**
-     * Method untuk mengambil Inventory yang ada dalam stash. Method ini juga secara langsung menghilangkan 
-     * Inventory yang diambil.
-     * @return inventory : Grid
+     * Method untuk mengecek apakah di stash ada item yang diinginkan . Method ini juga secara langsung menghilangkan 
+     * item yang diambil.
+     * @return true jika Item ada di stash , false jika tidak ada
      */
-    public Grid takeInventory(){
-        return null;
+    public boolean cekInventory(String namaItem){
+        if(this.inventoryList.containsKey(namaItem))
+        {
+            if(this.inventoryList.get(namaItem)==1)
+            {
+                this.inventoryList.remove(namaItem);
+            }
+            else
+            {
+                this.inventoryList.put(namaItem,this.inventoryList.get(namaItem)-1);
+            }     
+            return true;
+        }
+        else
+        {  
+            return false;
+        }
     }
     
     /**
      * Method ini digunakan untuk melihat inventory-inventory yang dimiliki.
-     * @return arrayOfGrid : Grid, array dengan ukuran 2x4 yang bersisi
-     * barang-barang yang dimiliki.
      */
-    public Grid[][] viewInventory(){
-        return null;
+    public Vector viewInventory(){
+        Set set=this.inventoryList.entrySet();
+        Iterator i = set.iterator();
+        this.isiStash=new Vector();
+        while(i.hasNext()){
+          Map.Entry me = (Map.Entry)i.next();
+          for(int j=0;j<(int)me.getValue();j++)
+          {
+              if(((String)me.getKey()).contains("KUNCI"))
+              {
+                  this.isiStash.add(new Key(0,0,(String)me.getKey()));
+              }
+              
+          }
+          //System.out.println(me.getKey() + " : " + me.getValue() );
+        }
+        return this.isiStash;
     }
 }

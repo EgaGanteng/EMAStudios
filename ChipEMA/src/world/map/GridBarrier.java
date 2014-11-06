@@ -25,12 +25,6 @@ public class GridBarrier extends Grid {
         this.imgFileName="image/barrier.jpg";
         this.isSteppable = false;
         this.isEditable = true;
-        URL imgUrl=getClass().getClassLoader().getResource(imgFileName);
-        try{
-            this.img=ImageIO.read(imgUrl);
-        }
-        catch(IOException ex){
-            ex.printStackTrace();
-        }  
+        
     }
 }
