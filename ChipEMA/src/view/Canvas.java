@@ -7,12 +7,12 @@ package view;
 
 import controller.Controller;
 import interfaces.Drawable;
-import interfaces.Modelled;
 import java.awt.Graphics;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import world.map.Grid;
 
 /**
  *
@@ -20,15 +20,17 @@ import javax.swing.JPanel;
  */
 public class Canvas extends JPanel {
 
-    private Modelled ctrl;
+    private Controller ctrl;
     private BufferedImage img;
 
     public Canvas() {
-
     }
 
-    public void setCtrl(Modelled ctrl) {
+    public void setCtrl(Controller ctrl) {
         this.ctrl = ctrl;
+        addKeyListener(ctrl);
+        setFocusable(true);
+        setFocusTraversalKeysEnabled(false);
     }
 
     public BufferedImage getImg() {
@@ -38,8 +40,8 @@ public class Canvas extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        img = new BufferedImage(1024, 600, BufferedImage.BITMASK);
-        ctrl.getAllDrawable()[0].drawDefault(img.getGraphics());
-        g.drawImage(img, 0, 0, this);
+        img = new BufferedImage(1024, 1000, BufferedImage.BITMASK);
+        ctrl.getAllDrawable()[1].drawDefault(img.getGraphics());
+        g.drawImage(img, 0, 0, null);
     }
 }

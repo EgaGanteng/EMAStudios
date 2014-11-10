@@ -17,7 +17,8 @@ import javax.swing.JPanel;
  *
  * @author i13047
  */
-public abstract class Grid{
+public abstract class Grid {
+
     protected BufferedImage img;
     protected String imgFileName;
     protected String nama;
@@ -25,27 +26,25 @@ public abstract class Grid{
     protected boolean isEditable;
     public static final int CANVAS_WIDTH = 65;
     public static final int CANVAS_HEIGHT = 65;
-    
+
     public Grid() {
-        
+
     }
-    
-    public void loadImage()
-    {
-        URL imgUrl=getClass().getClassLoader().getResource(imgFileName);
-        try{
-            this.img=ImageIO.read(imgUrl);
-        }
-        catch(IOException ex){
+
+    public void loadImage() {
+        URL imgUrl = getClass().getClassLoader().getResource(imgFileName);
+        try {
+            this.img = ImageIO.read(imgUrl);
+        } catch (IOException ex) {
             ex.printStackTrace();
-        }  
+        }
     }
-    
-    public BufferedImage getImage()
-    {  
-        if(this.img==null){
-            loadImage();}
-            return this.img;
+
+    public BufferedImage getImage() {
+        if (this.img == null) {
+            loadImage();
+        }
+        return this.img;
     }
 
     public boolean isSteppable() {
@@ -56,7 +55,7 @@ public abstract class Grid{
         return isEditable;
     }
 
-    public String getNama(){
+    public String getNama() {
         return nama;
     }
 }

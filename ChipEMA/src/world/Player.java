@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package world;
 
 import interfaces.Drawable;
@@ -14,14 +13,17 @@ import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URL;
+import javax.imageio.ImageIO;
 import sun.security.action.GetLongAction;
 
 /**
  *
  * @author i13047
  */
-public class Player implements Drawable{
-    
+public class Player implements Drawable {
+
     private Point location;
     private boolean isDead;
     private BufferedImage chip;
@@ -31,7 +33,7 @@ public class Player implements Drawable{
         return location.x;
     }
 
-    public Player(int x,int y) {
+    public Player(int x, int y) {
         this.location = new Point(x, y);
         this.isDead = false;
     }
@@ -43,15 +45,15 @@ public class Player implements Drawable{
     public int getLocationY() {
         return location.y;
     }
-    
+
     public void move(int direction) {
         if (direction == ATAS) {
             this.location.y--;
         } else if (direction == KANAN) {
             this.location.x++;
-        } else if(direction == BAWAH){
+        } else if (direction == BAWAH) {
             this.location.y++;
-        }else if(direction== KIRI){
+        } else if (direction == KIRI) {
             this.location.x--;
         }
     }
@@ -66,9 +68,17 @@ public class Player implements Drawable{
 
     @Override
     public void drawDefault(Graphics g) {
-        Graphics2D g2 = (Graphics2D)g;
-        g2.setColor(Color.BLUE);
-        g2.drawOval(location.x, location.y,100 , 100);
+        Graphics2D g2 = (Graphics2D) g;
+//        g2.setColor(Color.BLUE);
+//        g2.drawRect(location.x, location.y,100 , 100);
+        BufferedImage img = null;
+        URL imgUrl = getClass().getClassLoader().getResource("image/barrier.jpg");
+        try {
+            img = ImageIO.read(imgUrl);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        g2.drawImage(img, 0, 0, null);
     }
 
     @Override

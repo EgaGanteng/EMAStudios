@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package world;
 
 import interfaces.Drawable;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import world.map.Grid;
 import world.map.GridBarrier;
 import world.map.GridDoor;
@@ -21,7 +21,8 @@ import world.map.GridWall;
  *
  * @author i13047
  */
-public class Board implements Drawable{
+public class Board implements Drawable {
+
     private Grid[][] map;
     private int level;
     private Stash inventory;
@@ -42,31 +43,32 @@ public class Board implements Drawable{
     public Status getStats() {
         return stats;
     }
-    
-    public Board(int level){
+
+    public Board(int level) {
         this.level = level;
-        this.map=new Grid[10][10];
-        this.stats=new Status(10,20,30,5);
-        this.inventory=new Stash();
+        this.map = new Grid[10][10];
+        this.stats = new Status(10, 20, 30, 5);
+        this.inventory = new Stash();
         this.setMap();
     }
-    
+
     @Override
     public void drawDefault(Graphics g) {
-        int i,j;
+        Graphics2D g2 = (Graphics2D) g;
+        int i=9, j;// 2 sama 5 masih belum bener
         for(i=0;i<map.length;i++)
         {
-            for(j=0;j<map[i].length;j++)
+            for(j=0;j<map[0].length;j++)
             {
-                g.drawImage(map[i][j].getImage(),i*50,j*50,null);
+                g2.drawImage(map[i][j].getImage(),i*65,j*65,null);
             }
         }
+  
+
     }
-    
-    public void setMap()
-    {
-        if(this.level==1)
-        {
+
+    public void setMap() {
+        if (this.level == 1) {
             /**
              * 0 1 2 3 4 5 6 7 8 9
              * W W W W W W W W W W 0
@@ -79,127 +81,116 @@ public class Board implements Drawable{
              * W . . . F F . W D W 7
              * W C . . . . . F C W 8
              * W W W W W W W W W W 9
-             * 
-             * Keterangan :
-             * -- W = Wall
-             * -- C = Chip / Integrated Circuit
-             * -- F = Fire
-             * -- E = Finnish/Exit
-             * -- B = Barrier
-             * -- . = Lantai Kosong
-             * -- K = Key
-             * -- D = Door
+             *
+             * Keterangan : -- W = Wall -- C = Chip / Integrated Circuit -- F =
+             * Fire -- E = Finnish/Exit -- B = Barrier -- . = Lantai Kosong -- K
+             * = Key -- D = Door
              */
             /**
              * Lantai Kosong i baris 8 kolom 2-6
              */
-            for(int i = 2;i<=6;i++){
+            for (int i = 2; i <= 6; i++) {
                 this.map[8][i] = new GridLantaiKosong();
             }
             /**
-             * Lantai Kosong di baris 8 kolom 1-3
-             *                &
-             * Lantai Kosong di baris 7 kolom 6
+             * Lantai Kosong di baris 8 kolom 1-3 & Lantai Kosong di baris 7
+             * kolom 6
              */
-            for(int i = 1;i<=3;i++){
+            for (int i = 1; i <= 3; i++) {
                 this.map[7][i] = new GridLantaiKosong();
             }
             this.map[7][6] = new GridLantaiKosong();
             /**
-             * Lantai Kosong di baris 6 kolom 1-3
-             *                &
-             * Lantai Kosong di baris 6 kolom 5-8
+             * Lantai Kosong di baris 6 kolom 1-3 & Lantai Kosong di baris 6
+             * kolom 5-8
              */
-            for(int i = 1;i<=3;i++){
+            for (int i = 1; i <= 3; i++) {
                 this.map[6][i] = new GridLantaiKosong();
             }
-            for(int i = 5;i<=8;i++){
+            for (int i = 5; i <= 8; i++) {
                 this.map[6][i] = new GridLantaiKosong();
             }
             /**
-             * Lantai Kosong di baris 1-5 kolom 5
-             *                  &
-             * Lantai Kosong di baris 5 kolom 1
+             * Lantai Kosong di baris 1-5 kolom 5 & Lantai Kosong di baris 5
+             * kolom 1
              */
-            for(int i = 1;i<=5;i++){
+            for (int i = 1; i <= 5; i++) {
                 this.map[i][5] = new GridLantaiKosong();
             }
             this.map[5][1] = new GridLantaiKosong();
             /**
-             * Lantai Kosong di baris 4 kolom 1-2
-             *                &
-             * Lantai Kosong di baris 4 kolom 6-8
+             * Lantai Kosong di baris 4 kolom 1-2 & Lantai Kosong di baris 4
+             * kolom 6-8
              */
-            for(int i = 1;i<=2;i++){
+            for (int i = 1; i <= 2; i++) {
                 this.map[4][i] = new GridLantaiKosong();
             }
-            for(int i = 6;i<=8;i++){
+            for (int i = 6; i <= 8; i++) {
                 this.map[4][i] = new GridLantaiKosong();
             }
             /**
-             * Lantai Kosong di :
-             * (1,1),(2,3),(1,4),(2,4),(2,7),(2,8),(3,8)
+             * Lantai Kosong di : (1,1),(2,3),(1,4),(2,4),(2,7),(2,8),(3,8)
              */
             this.map[1][1] = this.map[2][3] = this.map[1][4] = this.map[2][4] = this.map[2][7] = this.map[2][8] = this.map[3][8]
                     = new GridLantaiKosong();
-            
+
             /**
              * Wall
              */
-            for(int i = 0;i<map.length;i++){
+            for (int i = 0; i < map.length; i++) {
                 this.map[0][i] = new GridWall(); // Wall Atas
                 this.map[9][i] = new GridWall(); // Wall Bawah
             }
-            for(int i = 1;i<map.length;i++){
+            for (int i = 1; i < map.length; i++) {
                 this.map[i][0] = new GridWall(); // Wall Kiri
                 this.map[i][9] = new GridWall(); // Wall Kanan
             }
-            
+            this.map[2][2] = new GridWall();//Wall di baris 2 kolom 2.
+            this.map[5][3] = new GridWall();//Wall di baris 5 kolom 3.
+
             this.map[1][2] = new GridBarrier(); // barrier di baris 1 kolom 2
             this.map[2][1] = new GridFinish(); // Finnish di baris 2 kolom 1
             this.map[1][7] = new GridLantaiKosong(); // Key di baris 1 kolom 7
             this.map[7][8] = new GridDoor(); // Door di baris 7 kolom 8
             /**
              * Wall di baris 3 kolom 1-4.
-            */
+             */
             this.map[3][1] = this.map[3][2] = this.map[3][3] = this.map[3][4] = new GridWall();
             /**
              * Wall di baris 1-3 kolom 6.
-            */
+             */
             this.map[1][6] = this.map[2][6] = this.map[3][6] = new GridWall();
             /**
              * Wall di baris 4-6 kolom 4.
-            */
+             */
             this.map[4][4] = this.map[5][4] = this.map[6][4] = new GridWall();
             /**
              * Wall di baris 4-6 kolom 4.
-            */
+             */
             this.map[4][4] = this.map[5][4] = this.map[6][4] = new GridWall();
             /**
-             * Wall di baris 5 kolom 6-8.
-             * Wall di baris 7 kolom 7.
-            */
-            this.map[5][6] = this.map[5][7] = this.map[5][8] = this.map[7][7]= new GridWall();
-            
+             * Wall di baris 5 kolom 6-8. Wall di baris 7 kolom 7.
+             */
+            this.map[5][6] = this.map[5][7] = this.map[5][8] = this.map[7][7] = new GridWall();
+
             /**
-             *  Fire di:
-             *  Baris,Kolom : (5,2) , (1,8) , (3,7) , (8,7) ,(7,4) , (7,5).
+             * Fire di: Baris,Kolom : (5,2) , (1,8) , (3,7) , (8,7) ,(7,4) ,
+             * (7,5).
              */
             this.map[5][2] = this.map[1][8] = this.map[3][7] = this.map[8][7] = this.map[7][4] = this.map[7][5] = new GridFire();
-            
+
             /**
-             *  Integrated Circuit di:
-             *  Baris,Kolom : (8,1) , (8,8),(4,3),(1,3).
+             * Integrated Circuit di: Baris,Kolom : (8,1) , (8,8),(4,3),(1,3).
              */
             this.map[8][1] = this.map[8][8] = this.map[4][3] = this.map[1][3] = new GridIC();
-        }
-        else if(this.level==2)
-        {
-            
-        }
-        else if(this.level==3)
-        {
-            
+        } else if (this.level == 2) {
+            this.map = new Grid[2][2];
+            this.map[0][1] = new GridLantaiKosong();
+            this.map[1][0] = new GridWall();
+            this.map[1][1] = new GridFinish();
+            this.map[0][0] = new GridBarrier();
+        } else if (this.level == 3) {
+
         }
     }
 

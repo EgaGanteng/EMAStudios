@@ -6,7 +6,6 @@
 package controller;
 
 import interfaces.Drawable;
-import interfaces.Modelled;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
@@ -23,7 +22,7 @@ import world.Status;
  *
  * @author i13047
  */
-public class Controller implements Runnable, KeyListener, Modelled {
+public class Controller implements Runnable, KeyListener {
 
     private Canvas canvas;
     private Player player1;
@@ -111,7 +110,6 @@ public class Controller implements Runnable, KeyListener, Modelled {
         }
     }
 
-    @Override
     public Drawable[] getAllDrawable() {
         Drawable[] res = {this.player1,this.papan};
         return res;

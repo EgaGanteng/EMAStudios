@@ -7,7 +7,6 @@
 package chipchallange;
 
 import controller.Controller;
-import interfaces.Modelled;
 import java.awt.Dimension;
 import javax.swing.JFrame;
 import view.Canvas;
@@ -20,7 +19,7 @@ public class ChipChalange {
     public static void main(String[] args) {
         JFrame f = new JFrame("EMA Chip Chalenge");
         Canvas ra = new Canvas();
-        Modelled ctrl = new Controller(ra);
+        Controller ctrl = new Controller(ra);
         ra.setCtrl(ctrl);
         Thread thread = new Thread((Controller)ctrl);
         thread.start();
