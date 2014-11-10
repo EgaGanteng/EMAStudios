@@ -2,3 +2,4 @@
 *.xml
 ChipEMA/nbproject/private/private.xml
 ChipEMA/nbproject/private/private.properties
+*.properties
