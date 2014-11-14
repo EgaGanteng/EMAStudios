@@ -31,6 +31,7 @@ public class Controller implements Runnable, KeyListener {
     private Stash inventory;
     private boolean isFinish;
     private Thread thread;
+    private Drawable[] drawable;
 
     public Controller(Canvas c) {
         isFinish = false;
@@ -40,6 +41,9 @@ public class Controller implements Runnable, KeyListener {
         inventory = papan.getInventory();
         canvas = c;
         thread = new Thread(this);
+        this.drawable = new Drawable[2];
+        drawable[0] = this.player1;
+        drawable[1] = this.papan;
     }
 
     public void start() {
@@ -111,7 +115,6 @@ public class Controller implements Runnable, KeyListener {
     }
 
     public Drawable[] getAllDrawable() {
-        Drawable[] res = {this.player1,this.papan};
-        return res;
+        return drawable;
     }
 }
