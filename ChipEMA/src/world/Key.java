@@ -24,10 +24,15 @@ public class Key extends Item{
     public Key(int x, int y,String warnaKunci)
     {
         super(x,y);
-        this.namaItem=KUNCI_BIRU;
-        switch(namaItem)
+        this.namaItem=warnaKunci;
+        //this.isReusable=false;
+        if(this.namaItem.equals("KUNCI BIRU"))
         {
-            case "KUNCI BIRU" : this.imgFileName="image/key.jpg";break;
+            this.imgFileName="image/key.jpg";
+        }
+        else if(this.namaItem.equals("KUNCI MERAH"))
+        {
+            this.imgFileName="image/key.jpg";
         }
     }
     

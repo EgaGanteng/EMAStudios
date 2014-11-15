@@ -54,14 +54,17 @@ public class Stash {
     public boolean cekInventory(String namaItem){
         if(this.inventoryList.containsKey(namaItem))
         {
-            if(this.inventoryList.get(namaItem)==1)
+            if(namaItem.contains("KUNCI"))
             {
-                this.inventoryList.remove(namaItem);
-            }
-            else
-            {
-                this.inventoryList.put(namaItem,this.inventoryList.get(namaItem)-1);
-            }     
+                 if(this.inventoryList.get(namaItem)==1)
+                {
+                    this.inventoryList.remove(namaItem);
+                }
+                else
+                {
+                    this.inventoryList.put(namaItem,this.inventoryList.get(namaItem)-1);
+                }     
+            }  
             return true;
         }
         else
@@ -84,6 +87,10 @@ public class Stash {
               if(((String)me.getKey()).contains("KUNCI"))
               {
                   this.isiStash.add(new Key(0,0,(String)me.getKey()));
+              }
+              else if(((String)me.getKey()).contains("SEPATU"))
+              {
+                  this.isiStash.add(new Boot(0,0,(String)me.getKey()));
               }
               
           }

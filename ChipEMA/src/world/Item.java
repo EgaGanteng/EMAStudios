@@ -19,6 +19,7 @@ public abstract class Item {
     protected String namaItem;
     protected BufferedImage img;
     protected String imgFileName;
+    //protected boolean isReusable;
             
     public Item(int x, int y)
     {
@@ -53,4 +54,9 @@ public abstract class Item {
     {
         return this.position.y;
     }
+    
+//    public boolean getReusable()
+//    {
+//        return this.isReusable;
+//    }
 }
