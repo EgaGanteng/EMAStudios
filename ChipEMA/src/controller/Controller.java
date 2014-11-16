@@ -67,11 +67,6 @@ public class Controller implements Runnable, KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
         if (!player1.isIsMoving()) {
             if (e.getKeyCode() == KeyEvent.VK_UP) {
                 if (papan.getMap()[player1.getLocationX()][player1.getLocationY() - 1].isSteppable()) {
@@ -98,6 +93,11 @@ public class Controller implements Runnable, KeyListener {
                 }
             }
         }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
     }
 
     @Override
