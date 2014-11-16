@@ -69,16 +69,16 @@ public class Player implements Drawable {
     @Override
     public void drawDefault(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
-//        g2.setColor(Color.BLUE);
-//        g2.drawRect(location.x, location.y,100 , 100);
-        BufferedImage img = null;
-        URL imgUrl = getClass().getClassLoader().getResource("image/barrier.jpg");
-        try {
-            img = ImageIO.read(imgUrl);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-        g2.drawImage(img, 0, 0, null);
+        g2.setColor(Color.BLUE);
+        g2.drawRect(location.x, location.y,100 , 100);
+//        BufferedImage img = null;
+//        URL imgUrl = getClass().getClassLoader().getResource("image/barrier.jpg");
+//        try {
+//            img = ImageIO.read(imgUrl);
+//        } catch (IOException ex) {
+//            ex.printStackTrace();
+//        }
+//        g2.drawImage(img, 0, 0, null);
     }
 
     @Override

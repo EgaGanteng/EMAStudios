@@ -61,12 +61,12 @@ public class Controller implements Runnable, KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
@@ -96,19 +96,18 @@ public class Controller implements Runnable, KeyListener {
     @Override
     public void run() {
         while (!player1.isIsDead() || !isFinish) {
-//            if (papan.getMap()[player1.getLocationX()][player1.getLocationY()].getNama().equals("Fire")) {
-//                player1.setIsDead(true);
-//            }
-//            if (papan.getMap()[player1.getLocationX()][player1.getLocationY()].getNama().equals("Finish")) {
-//                isFinish = true;
-//            }
-//            if (papan.getMap()[player1.getLocationX()][player1.getLocationY()].getNama().equals("IC")) {
-//                stat.decreaseChip(1);
-//            }
-            player1.move(Player.KANAN);
+            if (papan.getMap()[player1.getLocationX()][player1.getLocationY()].getNama().equals("Fire")) {
+                player1.setIsDead(true);
+            }
+            if (papan.getMap()[player1.getLocationX()][player1.getLocationY()].getNama().equals("Finish")) {
+                isFinish = true;
+            }
+            if (papan.getMap()[player1.getLocationX()][player1.getLocationY()].getNama().equals("IC")) {
+                stat.decreaseChip(1);
+            }
             canvas.repaint();
             try {
-                Thread.sleep(10);
+                Thread.sleep(16);
             } catch (InterruptedException ex) {
             }
         }
