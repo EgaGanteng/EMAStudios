@@ -17,6 +17,7 @@ import world.Board;
 import world.Player;
 import world.Stash;
 import world.Status;
+import world.map.GridLantaiKosong;
 
 /**
  *
@@ -61,50 +62,67 @@ public class Controller implements Runnable, KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
-       
+
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        
+
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_UP) {
-            if (papan.getMap()[player1.getLocationX()][player1.getLocationY() - 1].isSteppable()) {
-                player1.move(Player.ATAS);
+        if (!player1.isIsMoving()) {
+            if (e.getKeyCode() == KeyEvent.VK_UP) {
+                if (papan.getMap()[player1.getLocationX()][player1.getLocationY() - 1].isSteppable()) {
+                    player1.move(Player.ATAS);
+                    player1.setIsMoving(true);
+                }
             }
-        }
-        if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            if (papan.getMap()[player1.getLocationX()][player1.getLocationY() + 1].isSteppable()) {
-                player1.move(Player.BAWAH);
+            if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+                if (papan.getMap()[player1.getLocationX()][player1.getLocationY() + 1].isSteppable()) {
+                    player1.move(Player.BAWAH);
+                    player1.setIsMoving(true);
+                }
             }
-        }
-        if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            if (papan.getMap()[player1.getLocationX() + 1][player1.getLocationY()].isSteppable()) {
-                player1.move(Player.KANAN);
+            if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+                if (papan.getMap()[player1.getLocationX() + 1][player1.getLocationY()].isSteppable()) {
+                    player1.move(Player.KANAN);
+                    player1.setIsMoving(true);
+                }
             }
-        }
-        if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            if (papan.getMap()[player1.getLocationX() - 1][player1.getLocationY()].isSteppable()) {
-                player1.move(Player.KIRI);
+            if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+                if (papan.getMap()[player1.getLocationX() - 1][player1.getLocationY()].isSteppable()) {
+                    player1.move(Player.KIRI);
+                    player1.setIsMoving(true);
+                }
             }
         }
     }
 
     @Override
     public void run() {
-        while (!player1.isIsDead() || !isFinish) {
-            if (papan.getMap()[player1.getLocationX()][player1.getLocationY()].getNama().equals("Fire")) {
-                player1.setIsDead(true);
+        while (!player1.isIsDead() && !isFinish) {
+            if (player1.isIsMoving()) {
+                player1.moving();
+            } else {
+                if (papan.getMap()[player1.getLocationX()][player1.getLocationY()].getNama().equals("Fire")) {
+                    player1.setIsDead(true);
+                    System.out.println("goler");
+                }
+                if (papan.getMap()[player1.getLocationX()][player1.getLocationY()].getNama().equals("Finish")) {
+                    isFinish = true;
+                }
+                if (papan.getMap()[player1.getLocationX()][player1.getLocationY()].getNama().equals("IC")) {
+                    stat.decreaseChip(1);
+                    System.out.println(stat.getChipLeft());
+                    papan.getMap()[player1.getLocationX()][player1.getLocationY()] = new GridLantaiKosong();
+                }
+                if (stat.getChipLeft() == 0) {
+                    papan.getMap()[papan.getGridBarrierLocX()][papan.getGridBarrierLocY()] = new GridLantaiKosong();
+                }
             }
-            if (papan.getMap()[player1.getLocationX()][player1.getLocationY()].getNama().equals("Finish")) {
-                isFinish = true;
-            }
-            if (papan.getMap()[player1.getLocationX()][player1.getLocationY()].getNama().equals("IC")) {
-                stat.decreaseChip(1);
-            }
+
             canvas.repaint();
             try {
                 Thread.sleep(16);

@@ -29,12 +29,12 @@ public class Canvas extends JPanel {
 
     public Canvas() {
         at = new AffineTransform();
-        at.scale(0.4, 0.4);
+        at.scale(0.865, 0.865);
     }
 
     public void setCtrl(Controller ctrl) {
         this.ctrl = ctrl;
-        img = new BufferedImage(800, 480, BufferedImage.BITMASK);
+        img = new BufferedImage(1024, 600, BufferedImage.BITMASK);
         addKeyListener(ctrl);
         setFocusable(true);
         setFocusTraversalKeysEnabled(false);
@@ -48,12 +48,12 @@ public class Canvas extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        Graphics2D g2 = (Graphics2D)g;
         img.getGraphics().setColor(Color.white);
-        img.getGraphics().fillRect(0, 0, 800, 480);
-        ctrl.getAllDrawable()[0].drawDefault(img.getGraphics());
-        ctrl.getAllDrawable()[1].drawDefault(img.getGraphics());
-        g2.setTransform(at);
-        g2.drawImage(img, 0, 0, null);
+        Graphics2D g2img = (Graphics2D)img.getGraphics();
+        g2img.fillRect(0, 0, 1024, 600);
+        g2img.setTransform(at);
+        ctrl.getAllDrawable()[1].drawDefault(g2img);//board
+        ctrl.getAllDrawable()[0].drawDefault(g2img);//player
+        g.drawImage(img, 0, 0, null);
     }
 }

@@ -25,7 +25,7 @@ public class ChipChalange {
         thread.start();
         f.getContentPane().add("Center", ra);
         f.pack();
-        f.setSize(new Dimension(800, 480));
+        f.setSize(new Dimension(1024, 600));
         f.setVisible(true);
     }
 }
