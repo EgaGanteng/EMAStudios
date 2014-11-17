@@ -27,7 +27,6 @@ public class Player implements Drawable {
     private Point location;
     private boolean isDead;
     private BufferedImage chip;
-    private boolean isMoving;
     private int pixelLocX, pixelLocY;
     public static int ATAS = 0, KANAN = 1, BAWAH = 2, KIRI = 3;
 
@@ -35,20 +34,9 @@ public class Player implements Drawable {
         return location.x;
     }
 
-    public void setIsMoving(boolean isMoving) {
-        this.isMoving = isMoving;
-    }
-
-    public boolean isIsMoving() {
-        return isMoving;
-    }
-
     public Player(int x, int y) {
         this.location = new Point(x, y);
         this.isDead = false;
-        this.isMoving = false;
-        this.pixelLocX = x * 65;
-        this.pixelLocY = y * 65;
         URL imgUrl = getClass().getClassLoader().getResource("image/player/ChibiMini.png");
         try {
             this.chip = ImageIO.read(imgUrl);
@@ -77,22 +65,6 @@ public class Player implements Drawable {
         }
     }
 
-    public void moving() {
-        if (this.pixelLocX > this.location.x * 65) {
-            this.pixelLocX-=5;
-        } else if (this.pixelLocX < this.location.x * 65) {
-            this.pixelLocX+=5;
-        }
-        if (this.pixelLocY > this.location.y * 65) {
-            this.pixelLocY-=5;
-        } else if (this.pixelLocY < this.location.y * 65) {
-            this.pixelLocY+=5;
-        }
-        if (this.pixelLocX == this.location.x*65 && this.pixelLocY == this.location.y*65) {
-            this.isMoving = false;
-        }
-    }
-
     public void setIsDead(boolean isDead) {
         this.isDead = isDead;
     }
@@ -105,7 +77,7 @@ public class Player implements Drawable {
     public void drawDefault(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
 //        g2.drawRect(location.x, location.y,100 , 100);
-        g2.drawImage(chip, pixelLocX, pixelLocY, null);
+        g2.drawImage(chip, location.x, location.y, null);
 //        BufferedImage img = null;
 //        URL imgUrl = getClass().getClassLoader().getResource("image/barrier.jpg");
 //        try {
@@ -118,7 +90,9 @@ public class Player implements Drawable {
 
     @Override
     public void drawAt(Graphics g, int offsetX, int offsetY) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        Graphics2D g2 = (Graphics2D) g;
+        g2.drawImage(chip, offsetX, offsetY, null);
     }
 
 }

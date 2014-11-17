@@ -31,14 +31,28 @@ public class Controller implements Runnable, KeyListener {
     private Status stat;
     private Stash inventory;
     private boolean isFinish;
+    private int playerPixelLocX, playerPixelLocY;
     private Thread thread;
     private Drawable[] drawable;
+
+    private boolean isMoving;
+
+    public int getPlayerPixelLocX() {
+        return playerPixelLocX;
+    }
+
+    public int getPlayerPixelLocY() {
+        return playerPixelLocY;
+    }
 
     public Controller(Canvas c) {
         isFinish = false;
         this.papan = new Board(1);
         stat = papan.getStats();
         player1 = new Player(6, 8);
+        isMoving = false;
+        this.playerPixelLocX = player1.getLocationX() * 65;
+        this.playerPixelLocY = player1.getLocationY() * 65;
         inventory = papan.getInventory();
         canvas = c;
         thread = new Thread(this);
@@ -67,29 +81,29 @@ public class Controller implements Runnable, KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if (!player1.isIsMoving()) {
+        if (!isMoving) {
             if (e.getKeyCode() == KeyEvent.VK_UP) {
                 if (papan.getMap()[player1.getLocationX()][player1.getLocationY() - 1].isSteppable()) {
                     player1.move(Player.ATAS);
-                    player1.setIsMoving(true);
+                    isMoving = true;
                 }
             }
             if (e.getKeyCode() == KeyEvent.VK_DOWN) {
                 if (papan.getMap()[player1.getLocationX()][player1.getLocationY() + 1].isSteppable()) {
                     player1.move(Player.BAWAH);
-                    player1.setIsMoving(true);
+                    isMoving = true;
                 }
             }
             if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
                 if (papan.getMap()[player1.getLocationX() + 1][player1.getLocationY()].isSteppable()) {
                     player1.move(Player.KANAN);
-                    player1.setIsMoving(true);
+                    isMoving = true;
                 }
             }
             if (e.getKeyCode() == KeyEvent.VK_LEFT) {
                 if (papan.getMap()[player1.getLocationX() - 1][player1.getLocationY()].isSteppable()) {
                     player1.move(Player.KIRI);
-                    player1.setIsMoving(true);
+                    isMoving = true;
                 }
             }
         }
@@ -103,8 +117,8 @@ public class Controller implements Runnable, KeyListener {
     @Override
     public void run() {
         while (!player1.isIsDead() && !isFinish) {
-            if (player1.isIsMoving()) {
-                player1.moving();
+            if (isMoving) {
+                moving();
             } else {
                 if (papan.getMap()[player1.getLocationX()][player1.getLocationY()].getNama().equals("Fire")) {
                     player1.setIsDead(true);
@@ -128,6 +142,22 @@ public class Controller implements Runnable, KeyListener {
                 Thread.sleep(16);
             } catch (InterruptedException ex) {
             }
+        }
+    }
+
+    public void moving() {
+        if (this.playerPixelLocX >player1.getLocationX() * 65) {
+            this.playerPixelLocX -= 5;
+        } else if (this.playerPixelLocX < player1.getLocationX() * 65) {
+            this.playerPixelLocX += 5;
+        }
+        if (this.playerPixelLocY > player1.getLocationY() * 65) {
+            this.playerPixelLocY -= 5;
+        } else if (this.playerPixelLocY < player1.getLocationY() * 65) {
+            this.playerPixelLocY += 5;
+        }
+        if (this.playerPixelLocX == player1.getLocationX() * 65 && this.playerPixelLocY == player1.getLocationY() * 65) {
+            this.isMoving = false;
         }
     }
 
