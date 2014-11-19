@@ -6,12 +6,8 @@
 package world;
 
 import interfaces.Drawable;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Point;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.*;
+import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
@@ -77,7 +73,7 @@ public class Player implements Drawable {
     public void drawDefault(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
 //        g2.drawRect(location.x, location.y,100 , 100);
-        g2.drawImage(chip, location.x, location.y, null);
+        g2.drawImage(chip, location.x*65, location.y*65, null);
 //        BufferedImage img = null;
 //        URL imgUrl = getClass().getClassLoader().getResource("image/barrier.jpg");
 //        try {
@@ -94,5 +90,4 @@ public class Player implements Drawable {
         Graphics2D g2 = (Graphics2D) g;
         g2.drawImage(chip, offsetX, offsetY, null);
     }
-
 }
