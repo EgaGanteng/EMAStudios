@@ -17,7 +17,7 @@ import view.Canvas;
  */
 public class ChipChallenge {
     public static void main(String[] args) {
-        JFrame f = new JFrame("EMA Chip Chalenge");
+        JFrame f = new JFrame("EMA Chip Challenge");
         Canvas ra = new Canvas();
         Controller ctrl = new Controller(ra);
         ra.setCtrl(ctrl);
