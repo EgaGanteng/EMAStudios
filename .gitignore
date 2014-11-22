@@ -7,3 +7,4 @@ ChipEMA/nbproject/private/private.properties
 ChipEMA/nbproject/private/private.xml
 /ChipEMA/nbproject/private/
 *.properties
+/ChipEMA/dist/

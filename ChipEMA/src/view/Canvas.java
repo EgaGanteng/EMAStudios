@@ -54,6 +54,8 @@ public class Canvas extends JPanel {
         g2img.setTransform(at);
         ctrl.getAllDrawable()[1].drawDefault(g2img);//board
         ctrl.getAllDrawable()[0].drawAt(g2img,ctrl.getPlayerPixelLocX(),ctrl.getPlayerPixelLocY());//player
+        ctrl.getAllDrawable()[2].drawAt(g2img,650,0);
+        ctrl.getAllDrawable()[3].drawAt(g2img,650,100);
         g.drawImage(img, 0, 0, null);
     }
 }

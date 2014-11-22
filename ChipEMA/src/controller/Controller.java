@@ -31,6 +31,7 @@ public class Controller implements Runnable, KeyListener {
     private Drawable[] drawable;
     private Vector<Item> listItem;
     private boolean isMoving;
+    private long startTime;
 
     public int getPlayerPixelLocX() {
         return playerPixelLocX;
@@ -51,9 +52,12 @@ public class Controller implements Runnable, KeyListener {
         inventory = papan.getInventory();
         canvas = c;
         thread = new Thread(this);
-        this.drawable = new Drawable[2];
+        this.drawable = new Drawable[4];
         drawable[0] = this.player1;
         drawable[1] = this.papan;
+        drawable[2] = this.inventory;
+        drawable[3] = this.stat;
+        startTime = System.currentTimeMillis();
     }
 
     public void start() {
@@ -255,7 +259,12 @@ public class Controller implements Runnable, KeyListener {
 
     @Override
     public void run() {
+        long countTime = startTime;
         while (!player1.isIsDead() && !isFinish) {
+            long curTime = System.currentTimeMillis();
+            int selisih = (int)(curTime - countTime);
+            stat.decreaseTimeByMilis(selisih);
+            countTime = curTime;
             listItem=papan.getListItemDiMap();
             if (isMoving) {
                 moving();

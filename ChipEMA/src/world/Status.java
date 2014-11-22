@@ -5,6 +5,10 @@
  */
 package world;
 
+import interfaces.Drawable;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
@@ -14,17 +18,21 @@ import javax.swing.Timer;
  *
  * @author EMA Studio
  */
-public class Status {
+public class Status implements Drawable{
 
     private int chipLeft;
 
-    private int miliSeconds = 0, seconds = 0, minutes = 0;
+    private int milliseconds = 0, seconds = 0, minutes = 0;
+    private StringBuilder timeDisplay;
+    private StringBuilder chipLeftDisplay;
 
-    public Status(int menit, int detik, int miliDetik, int chipLeft) {
+    public Status(int menit, int detik, int chipLeft) {
         this.minutes = menit;
         this.seconds = detik;
-        this.miliSeconds = miliDetik;
+        this.milliseconds = 0;
         this.chipLeft = chipLeft;
+        timeDisplay = new StringBuilder();
+        chipLeftDisplay = new StringBuilder();
 //        timer = new Timer(10,this);
 //        timer.start();
     }
@@ -46,23 +54,27 @@ public class Status {
     }
     
     public void decreaseTimeByMilis(int milidetik){
-        this.miliSeconds -= milidetik;
+        this.milliseconds -=milidetik ;
+        timeDisplay.delete(0, timeDisplay.length());
         this.calcTime();
+        timeDisplay.append(minutes);
+        timeDisplay.append(':');
+        timeDisplay.append(seconds);       
     }
 
     private void calcTime() {
-        if (this.miliSeconds == 0 && (this.seconds > 0 || this.minutes > 0)) {
-            this.miliSeconds = 59;
+        if (this.milliseconds <= 0 && (this.seconds > 0 || this.minutes > 0)) {
+            this.milliseconds = 999;
             this.seconds--;
         } else {
-            this.miliSeconds--;
+            this.milliseconds--;
         }
         if (this.seconds == 0 && this.minutes > 0) {
             this.seconds = 59;
             this.minutes--;
         }
-        if (this.miliSeconds == 0 && this.seconds == 0 && this.minutes == 0) {
-            this.miliSeconds = this.seconds = this.minutes = 0;
+        if (this.milliseconds == 0 && this.seconds == 0 && this.minutes == 0) {
+            this.milliseconds = this.seconds = this.minutes = 0;
 //            System.out.println("Waktu Habis!");
         }
 
@@ -73,6 +85,37 @@ public class Status {
 //        } else if (this.seconds == 0 && this.minutes == 0 && this.miliSeconds > 0) {
 //            System.out.println(this.miliSeconds);
 //        }
+    }
+
+    @Override
+    public void drawDefault(Graphics g) {
+        g.setColor(Color.red);
+        g.setFont(new Font("VERDANA", Font.BOLD, 40));
+        g.drawString(timeDisplay.toString(), 0,40);
+        chipLeftDisplay.delete(0, chipLeftDisplay.length());
+        if (chipLeft>1) {
+            chipLeftDisplay.append("Chip lefts :");
+        }else{
+            chipLeftDisplay.append("Chip left :");
+        }
+        chipLeftDisplay.append(chipLeft);
+        g.drawString(chipLeftDisplay.toString(), 0, 90);
+    }
+
+    @Override
+    public void drawAt(Graphics g, int offsetX, int offsetY) {
+        g.setColor(Color.red);
+        g.setFont(new Font("VERDANA", Font.BOLD, 40));
+        g.drawString(timeDisplay.toString(), 0+offsetX,40+offsetY);
+        chipLeftDisplay.delete(0, chipLeftDisplay.length());
+        if (chipLeft>1) {
+            chipLeftDisplay.append("Chip lefts :");
+        }else{
+            chipLeftDisplay.append("Chip left :");
+        }
+        chipLeftDisplay.append(chipLeft);
+        g.drawString(chipLeftDisplay.toString(), 0+offsetX, 90+offsetY);
+    
     }
 
 }
