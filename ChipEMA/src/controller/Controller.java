@@ -34,6 +34,7 @@ public class Controller implements Runnable, KeyListener {
     private int playerPixelLocX, playerPixelLocY;
     private Thread thread;
     private Drawable[] drawable;
+    private boolean test;
 
     private boolean isMoving;
 
