@@ -21,17 +21,13 @@ public class Boot extends Item{
         //this.isReusable=true;
         if(this.namaItem.equals("SEPATU AIR"))
         {
-           this.imgFileName="image/key.jpg";
+           this.imgFileName="image/waterBOOTS.jpg";
         }
         else if(this.namaItem.equals("SEPATU API"))
         {
-            this.imgFileName="image/key.jpg";
+            this.imgFileName="image/fireBOOTS.jpg";
         }
     }
     
-    public BufferedImage getImage()
-    {  
-        return this.img;
-    }
     
 }

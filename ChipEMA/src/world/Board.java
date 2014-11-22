@@ -8,6 +8,7 @@ package world;
 import interfaces.Drawable;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.Vector;
 import world.map.Grid;
 import world.map.GridBarrier;
 import world.map.GridDoor;
@@ -28,6 +29,7 @@ public class Board implements Drawable {
     private Stash inventory;
     private Status stats;
     private int gridBarrierLocX, gridBarrierLocY;
+    private Vector<Item> items;
 
     public Grid[][] getMap() {
         return map;
@@ -49,21 +51,30 @@ public class Board implements Drawable {
         this.level = level;
         this.map = new Grid[10][10];
         this.inventory = new Stash();
+        this.items=new Vector<Item>();
         this.setMap();
     }
 
     @Override
     public void drawDefault(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
-        int i, j;// 2 sama 5 masih belum bener
+        int i, j;
         for (i = 0; i < map.length; i++) {
             for (j = 0; j < map[0].length; j++) {
                 g2.drawImage(map[i][j].getImage(), i * 65, j * 65, null);
             }
         }
+        for (i = 0; i < items.size(); i++) {
+            g2.drawImage(items.get(i).getImage(), items.get(i).getX() * 65, items.get(i).getY() * 65, null);
+        }
 
     }
-
+    
+    public Vector<Item> getListItemDiMap()
+    {
+        return this.items;
+    }
+    
     public void setMap() {
         if (this.level == 1) {
             /**
@@ -86,6 +97,12 @@ public class Board implements Drawable {
             /**
              * Lantai Kosong i baris 8 kolom 2-6
              */
+            
+            //Item item yang tersedia di level ini
+            items.add(new Key(1,6,Key.KUNCI_BIRU));
+            items.add(new Boot(1,5,Boot.SEPATU_API));
+            
+            
             for (int i = 2; i <= 6; i++) {
                 this.map[i][8] = new GridLantaiKosong();
             }
@@ -150,7 +167,7 @@ public class Board implements Drawable {
             this.gridBarrierLocY = 1;
             this.map[1][2] = new GridFinish(); // Finnish di baris 2 kolom 1
             this.map[7][1] = new GridLantaiKosong(); // Key di baris 1 kolom 7
-            this.map[8][7] = new GridDoor(); // Door di baris 7 kolom 8
+            this.map[8][7] = new GridDoor(GridDoor.PINTU_BIRU); // Door di baris 7 kolom 8
             /**
              * Wall di baris 3 kolom 1-4.
              */
