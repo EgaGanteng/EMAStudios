@@ -14,6 +14,6 @@ public class GridWater extends Grid{
         this.nama = "Water";
         this.isSteppable = true;
         this.isEditable = false; 
-        this.imgFileName = "image/fire.jpg";   
+        this.imgFileName = "image/water2.jpg";   
     }
 }

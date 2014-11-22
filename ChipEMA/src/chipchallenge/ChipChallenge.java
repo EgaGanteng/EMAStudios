@@ -25,6 +25,7 @@ public class ChipChallenge {
         thread.start();
         f.getContentPane().add("Center", ra);
         f.pack();
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setSize(new Dimension(1024, 600));
         f.setVisible(true);
     }

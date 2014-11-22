@@ -6,18 +6,13 @@
 package controller;
 
 import interfaces.Drawable;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.Vector;
+import java.util.logging.*;
 import view.Canvas;
-import world.Board;
-import world.Player;
-import world.Stash;
-import world.Status;
-import world.map.GridLantaiKosong;
+import world.*;
+import world.map.*;
 
 /**
  *
@@ -34,7 +29,7 @@ public class Controller implements Runnable, KeyListener {
     private int playerPixelLocX, playerPixelLocY;
     private Thread thread;
     private Drawable[] drawable;
-
+    private Vector<Item> listItem;
     private boolean isMoving;
 
     public int getPlayerPixelLocX() {
@@ -87,11 +82,83 @@ public class Controller implements Runnable, KeyListener {
                     player1.move(Player.ATAS);
                     isMoving = true;
                 }
+                else
+                {
+                    String temp=papan.getMap()[player1.getLocationX()][player1.getLocationY()-1].getNama();
+                    if(temp.equals("PINTU BIRU"))
+                    {
+                        if(inventory.cekInventory(Key.KUNCI_BIRU))
+                        {
+                            papan.getMap()[player1.getLocationX()][player1.getLocationY()-1] = new GridLantaiKosong();
+                            player1.move(Player.ATAS);
+                        }
+                    }
+                    else if(temp.equals("PINTU MERAH"))
+                    {
+                        if(inventory.cekInventory(Key.KUNCI_MERAH))
+                        {
+                            papan.getMap()[player1.getLocationX()][player1.getLocationY()-1] = new GridLantaiKosong();
+                            player1.move(Player.ATAS);
+                        }
+                    }
+                    else if(temp.equals("PINTU KUNING"))
+                    {
+                        if(inventory.cekInventory(Key.KUNCI_KUNING))
+                        {
+                            papan.getMap()[player1.getLocationX()][player1.getLocationY()-1] = new GridLantaiKosong();
+                            player1.move(Player.ATAS);
+                        }
+                    }
+                    else if(temp.equals("PINTU HIJAU"))
+                    {
+                        if(inventory.cekInventory(Key.KUNCI_HIJAU))
+                        {
+                            papan.getMap()[player1.getLocationX()][player1.getLocationY()-1] = new GridLantaiKosong();
+                            player1.move(Player.ATAS);
+                        }
+                    }
+                }
             }
             if (e.getKeyCode() == KeyEvent.VK_DOWN) {
                 if (papan.getMap()[player1.getLocationX()][player1.getLocationY() + 1].isSteppable()) {
                     player1.move(Player.BAWAH);
                     isMoving = true;
+                }
+                else
+                {
+                    String temp=papan.getMap()[player1.getLocationX() ][player1.getLocationY()+1].getNama();
+                    if(temp.equals("PINTU BIRU"))
+                    {
+                        if(inventory.cekInventory(Key.KUNCI_BIRU))
+                        {
+                            papan.getMap()[player1.getLocationX() ][player1.getLocationY()+1] = new GridLantaiKosong();
+                            player1.move(Player.BAWAH);
+                        }
+                    }
+                    else if(temp.equals("PINTU MERAH"))
+                    {
+                        if(inventory.cekInventory(Key.KUNCI_MERAH))
+                        {
+                            papan.getMap()[player1.getLocationX() ][player1.getLocationY()+1] = new GridLantaiKosong();
+                            player1.move(Player.BAWAH);
+                        }
+                    }
+                    else if(temp.equals("PINTU KUNING"))
+                    {
+                        if(inventory.cekInventory(Key.KUNCI_KUNING))
+                        {
+                            papan.getMap()[player1.getLocationX() ][player1.getLocationY()+1] = new GridLantaiKosong();
+                            player1.move(Player.BAWAH);
+                        }
+                    }
+                    else if(temp.equals("PINTU HIJAU"))
+                    {
+                        if(inventory.cekInventory(Key.KUNCI_HIJAU))
+                        {
+                            papan.getMap()[player1.getLocationX() ][player1.getLocationY()+1] = new GridLantaiKosong();
+                            player1.move(Player.BAWAH);
+                        }
+                    }
                 }
             }
             if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
@@ -99,11 +166,83 @@ public class Controller implements Runnable, KeyListener {
                     player1.move(Player.KANAN);
                     isMoving = true;
                 }
+                else
+                {
+                    String temp=papan.getMap()[player1.getLocationX() +1][player1.getLocationY()].getNama();
+                    if(temp.equals("PINTU BIRU"))
+                    {
+                        if(inventory.cekInventory(Key.KUNCI_BIRU))
+                        {
+                            papan.getMap()[player1.getLocationX()+1][player1.getLocationY()] = new GridLantaiKosong();
+                            player1.move(Player.KANAN);
+                        }
+                    }
+                    else if(temp.equals("PINTU MERAH"))
+                    {
+                        if(inventory.cekInventory(Key.KUNCI_MERAH))
+                        {
+                            papan.getMap()[player1.getLocationX()+1][player1.getLocationY()] = new GridLantaiKosong();
+                            player1.move(Player.KANAN);
+                        }
+                    }
+                    else if(temp.equals("PINTU KUNING"))
+                    {
+                        if(inventory.cekInventory(Key.KUNCI_KUNING))
+                        {
+                            papan.getMap()[player1.getLocationX()+1][player1.getLocationY()] = new GridLantaiKosong();
+                            player1.move(Player.KANAN);
+                        }
+                    }
+                    else if(temp.equals("PINTU HIJAU"))
+                    {
+                        if(inventory.cekInventory(Key.KUNCI_HIJAU))
+                        {
+                            papan.getMap()[player1.getLocationX()+1][player1.getLocationY()] = new GridLantaiKosong();
+                            player1.move(Player.KANAN);
+                        }
+                    }
+                }
             }
             if (e.getKeyCode() == KeyEvent.VK_LEFT) {
                 if (papan.getMap()[player1.getLocationX() - 1][player1.getLocationY()].isSteppable()) {
                     player1.move(Player.KIRI);
                     isMoving = true;
+                }
+                else
+                {
+                    String temp=papan.getMap()[player1.getLocationX() -1][player1.getLocationY()].getNama();
+                    if(temp.equals("PINTU BIRU"))
+                    {
+                        if(inventory.cekInventory(Key.KUNCI_BIRU))
+                        {
+                            papan.getMap()[player1.getLocationX() -1][player1.getLocationY()] = new GridLantaiKosong();
+                            player1.move(Player.KIRI);
+                        }
+                    }
+                    else if(temp.equals("PINTU MERAH"))
+                    {
+                        if(inventory.cekInventory(Key.KUNCI_MERAH))
+                        {
+                            papan.getMap()[player1.getLocationX() -1][player1.getLocationY()] = new GridLantaiKosong();
+                            player1.move(Player.KIRI);
+                        }
+                    }
+                    else if(temp.equals("PINTU KUNING"))
+                    {
+                        if(inventory.cekInventory(Key.KUNCI_KUNING))
+                        {
+                            papan.getMap()[player1.getLocationX() -1][player1.getLocationY()] = new GridLantaiKosong();
+                            player1.move(Player.KIRI);
+                        }
+                    }
+                    else if(temp.equals("PINTU HIJAU"))
+                    {
+                        if(inventory.cekInventory(Key.KUNCI_HIJAU))
+                        {
+                            papan.getMap()[player1.getLocationX() -1][player1.getLocationY()] = new GridLantaiKosong();
+                            player1.move(Player.KIRI);
+                        }
+                    }
                 }
             }
         }
@@ -117,12 +256,17 @@ public class Controller implements Runnable, KeyListener {
     @Override
     public void run() {
         while (!player1.isIsDead() && !isFinish) {
+            listItem=papan.getListItemDiMap();
             if (isMoving) {
                 moving();
             } else {
                 if (papan.getMap()[player1.getLocationX()][player1.getLocationY()].getNama().equals("Fire")) {
-                    player1.setIsDead(true);
-                    System.out.println("goler");
+                    if(!inventory.cekInventory(Boot.SEPATU_API)){
+                        player1.setIsDead(true);}
+                }
+                if (papan.getMap()[player1.getLocationX()][player1.getLocationY()].getNama().equals("Water")) {
+                    if(!inventory.cekInventory(Boot.SEPATU_AIR)){
+                        player1.setIsDead(true);}
                 }
                 if (papan.getMap()[player1.getLocationX()][player1.getLocationY()].getNama().equals("Finish")) {
                     isFinish = true;
@@ -131,6 +275,15 @@ public class Controller implements Runnable, KeyListener {
                     stat.decreaseChip(1);
                     System.out.println(stat.getChipLeft());
                     papan.getMap()[player1.getLocationX()][player1.getLocationY()] = new GridLantaiKosong();
+                }
+                
+                for(int i=0;i<listItem.size();i++)
+                {
+                    if(listItem.get(i).getX()==player1.getLocationX() && listItem.get(i).getY()==player1.getLocationY())
+                    {
+                        inventory.addInventory(listItem.get(i));
+                        listItem.remove(i);
+                    }
                 }
                 if (stat.getChipLeft() == 0) {
                     papan.getMap()[papan.getGridBarrierLocX()][papan.getGridBarrierLocY()] = new GridLantaiKosong();

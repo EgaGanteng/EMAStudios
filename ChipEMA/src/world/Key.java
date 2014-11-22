@@ -14,6 +14,7 @@ public class Key extends Item{
     public final static String KUNCI_BIRU="KUNCI BIRU";
     public final static String KUNCI_MERAH="KUNCI MERAH";
     public final static String KUNCI_KUNING="KUNCI KUNING";
+    public final static String KUNCI_HIJAU="KUNCI HIJAU";
     
     /**
      * Constuctor untuk membuat sebuah kunci
@@ -28,16 +29,19 @@ public class Key extends Item{
         //this.isReusable=false;
         if(this.namaItem.equals("KUNCI BIRU"))
         {
-            this.imgFileName="image/key.jpg";
+            this.imgFileName="image/keyBlue.jpg";
         }
         else if(this.namaItem.equals("KUNCI MERAH"))
         {
-            this.imgFileName="image/key.jpg";
+            this.imgFileName="image/keyRed.jpg";
         }
-    }
-    
-    public BufferedImage getImage()
-    {  
-        return this.img;
+        else if(this.namaItem.equals("KUNCI KUNING"))
+        {
+            this.imgFileName="image/keyYellow.jpg";
+        }
+        else if(this.namaItem.equals("KUNCI HIJAU"))
+        {
+            this.imgFileName="image/keyGreen.jpg";
+        }
     }
 }
