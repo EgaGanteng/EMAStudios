@@ -6,22 +6,13 @@
 package controller;
 
 import interfaces.Drawable;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.*;
+import java.awt.event.*;
 import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.logging.*;
 import view.Canvas;
-import world.Board;
-import world.Boot;
-import world.Item;
-import world.Key;
-import world.Player;
-import world.Stash;
-import world.Status;
-import world.map.GridLantaiKosong;
+import world.*;
+import world.map.*;
 
 /**
  *

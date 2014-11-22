@@ -6,17 +6,9 @@
 package world;
 
 import interfaces.Drawable;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.util.Vector;
-import world.map.Grid;
-import world.map.GridBarrier;
-import world.map.GridDoor;
-import world.map.GridFinish;
-import world.map.GridFire;
-import world.map.GridIC;
-import world.map.GridLantaiKosong;
-import world.map.GridWall;
+import world.map.*;
 
 /**
  *
@@ -83,16 +75,16 @@ public class Board implements Drawable {
              * W . B C . . W . F W 1
              * W E W . . . W . . W 2
              * W W W W W . W F . W 3
-             * W . . C W . . . . W 4
-             * W . F W W . W W W W 5
-             * W . . . W . . . . W 6
-             * W . . . F F . W D W 7
+             * W C . C W . . . . W 4
+             * W C F W W . W W W W 5
+             * W K . . W . . . . W 6
+             * W . . . F A . W D W 7
              * W C . . . . . F C W 8
              * W W W W W W W W W W 9
              *
              * Keterangan : -- W = Wall -- C = Chip / Integrated Circuit -- F =
              * Fire -- E = Finnish/Exit -- B = Barrier -- . = Lantai Kosong -- K
-             * = Key -- D = Door
+             * = Key -- D = Door --A =Air -- C = boot --
              */
             /**
              * Lantai Kosong i baris 8 kolom 2-6
@@ -101,6 +93,7 @@ public class Board implements Drawable {
             //Item item yang tersedia di level ini
             items.add(new Key(1,6,Key.KUNCI_BIRU));
             items.add(new Boot(1,5,Boot.SEPATU_API));
+            items.add(new Boot(1,4,Boot.SEPATU_AIR));
             
             
             for (int i = 2; i <= 6; i++) {
@@ -189,8 +182,8 @@ public class Board implements Drawable {
              * Fire di: Baris,Kolom : (5,2) , (1,8) , (3,7) , (8,7) ,(7,4) ,
              * (7,5).
              */
-            this.map[2][5] = this.map[8][1] = this.map[7][3] = this.map[7][8] = this.map[4][7] = this.map[5][7] = new GridFire();
-
+            this.map[2][5] = this.map[8][1] = this.map[7][3] = this.map[7][8] = this.map[4][7] = new GridFire();
+            this.map[5][7] = new GridWater();
             /**
              * Integrated Circuit di: Baris,Kolom : (8,1) , (8,8),(4,3),(1,3).
              */
