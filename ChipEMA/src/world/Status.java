@@ -11,6 +11,12 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 
@@ -24,17 +30,28 @@ public class Status implements Drawable{
 
     private int milliseconds = 0, seconds = 0, minutes = 0;
     private StringBuilder timeDisplay;
+    private BufferedImage panel;
     private StringBuilder chipLeftDisplay;
+    private Font displayFont;
+    private String levelDisplay;
 
-    public Status(int menit, int detik, int chipLeft) {
+    public Status(int menit, int detik, int chipLeft,int level) {
         this.minutes = menit;
         this.seconds = detik;
         this.milliseconds = 0;
         this.chipLeft = chipLeft;
         timeDisplay = new StringBuilder();
+        levelDisplay = "Level : " + level;
         chipLeftDisplay = new StringBuilder();
+        URL imgUrl = getClass().getClassLoader().getResource("image/panelStatus.png");
+        displayFont = new Font("VERDANA", Font.BOLD, 40);
+        try {
+            panel = ImageIO.read(imgUrl);
 //        timer = new Timer(10,this);
 //        timer.start();
+        } catch (IOException ex) {
+            Logger.getLogger(Status.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -57,6 +74,7 @@ public class Status implements Drawable{
         this.milliseconds -=milidetik ;
         timeDisplay.delete(0, timeDisplay.length());
         this.calcTime();
+        timeDisplay.append("Time : ");
         timeDisplay.append(minutes);
         timeDisplay.append(':');
         timeDisplay.append(seconds);       
@@ -89,9 +107,11 @@ public class Status implements Drawable{
 
     @Override
     public void drawDefault(Graphics g) {
-        g.setColor(Color.red);
-        g.setFont(new Font("VERDANA", Font.BOLD, 40));
-        g.drawString(timeDisplay.toString(), 0,40);
+        g.setColor(Color.BLACK);
+        g.drawImage(panel, 0, 0, null);
+        g.setFont(displayFont);
+        g.drawString(levelDisplay, 90, 120);
+        g.drawString(timeDisplay.toString(), 90,170);
         chipLeftDisplay.delete(0, chipLeftDisplay.length());
         if (chipLeft>1) {
             chipLeftDisplay.append("Chip lefts :");
@@ -99,14 +119,16 @@ public class Status implements Drawable{
             chipLeftDisplay.append("Chip left :");
         }
         chipLeftDisplay.append(chipLeft);
-        g.drawString(chipLeftDisplay.toString(), 0, 90);
+        g.drawString(chipLeftDisplay.toString(), 90, 220);
     }
 
     @Override
     public void drawAt(Graphics g, int offsetX, int offsetY) {
-        g.setColor(Color.red);
-        g.setFont(new Font("VERDANA", Font.BOLD, 40));
-        g.drawString(timeDisplay.toString(), 0+offsetX,40+offsetY);
+        g.setColor(Color.BLACK);
+        g.drawImage(panel, offsetX, offsetY, null);
+        g.setFont(displayFont);
+        g.drawString(levelDisplay, 90+offsetX, 120+offsetY);
+        g.drawString(timeDisplay.toString(), 90+offsetX,170+offsetY);
         chipLeftDisplay.delete(0, chipLeftDisplay.length());
         if (chipLeft>1) {
             chipLeftDisplay.append("Chip lefts :");
@@ -114,7 +136,7 @@ public class Status implements Drawable{
             chipLeftDisplay.append("Chip left :");
         }
         chipLeftDisplay.append(chipLeft);
-        g.drawString(chipLeftDisplay.toString(), 0+offsetX, 90+offsetY);
+        g.drawString(chipLeftDisplay.toString(), 90+offsetX, 220+offsetY);
     
     }
 

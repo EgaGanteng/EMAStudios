@@ -5,13 +5,15 @@
  */
 package world;
 
+import interfaces.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.Vector;
-import interfaces.*;
-import java.awt.Graphics;
 
 /**
  *
@@ -24,10 +26,12 @@ public class Stash implements Drawable {
      * digunakan untuk daftar semua item yang ada di dalam stash
      */
     private Vector isiStash;
+    private Font font;
 
     public Stash() {
         this.inventoryList = new HashMap<String, Integer>();
         isiStash = new Vector();
+        font = new Font("VERDANA", Font.BOLD, 40) ;
     }
 
     /*
@@ -68,9 +72,6 @@ public class Stash implements Drawable {
         }
     }
 
-    /**
-     * Method ini digunakan untuk melihat inventory-inventory yang dimiliki.
-     */
     private void updateInventory() {
         Set set = this.inventoryList.entrySet();
         Iterator i = set.iterator();
@@ -89,6 +90,9 @@ public class Stash implements Drawable {
         }
     }
 
+    /**
+     * Method ini digunakan untuk melihat inventory-inventory yang dimiliki.
+     */
     public Vector viewInventory() {
         return isiStash;
     }
@@ -105,9 +109,12 @@ public class Stash implements Drawable {
 
     @Override
     public void drawAt(Graphics g, int offsetX, int offsetY) {
+        g.setColor(Color.BLACK);
+        g.setFont(font);
+        g.drawString("Inventory :", offsetX, offsetY+45);
         for (int i = 0; i < isiStash.size(); i++) {
             Item item = (Item) isiStash.get(i);
-            g.drawImage(item.getImage(), i * 65 + offsetX, i + offsetY, null);
+            g.drawImage(item.getImage(), i * 65 + offsetX, i + offsetY+50, null);
         }
     }
 }

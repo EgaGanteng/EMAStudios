@@ -188,7 +188,7 @@ public class Board implements Drawable {
              * Integrated Circuit di: Baris,Kolom : (8,1) , (8,8),(4,3),(1,3).
              */
             this.map[1][8] = this.map[8][8] = this.map[3][4] = this.map[3][1] = new GridIC();
-            this.stats = new Status(10, 20, 4);
+            this.stats = new Status(10, 20, 4,this.level);
             
         } else if (this.level == 2) {
             this.map = new Grid[2][2];
