@@ -99,6 +99,10 @@ public class Controller implements Runnable, KeyListener {
                         if (papan.getInventory().cekInventory(Key.KUNCI_HIJAU)) {
                             papan.getMap()[player1.getLocationX()][player1.getLocationY() - 1] = new GridLantaiKosong();
                         }
+                    } else if (temp.equals("Barrier")) {
+                        if (papan.getStats().getChipLeft() == 0) {
+                            papan.getMap()[player1.getLocationX()][player1.getLocationY() - 1] = new GridLantaiKosong();
+                        }
                     }
                 }
             }
@@ -122,6 +126,10 @@ public class Controller implements Runnable, KeyListener {
                         }
                     } else if (temp.equals("PINTU HIJAU")) {
                         if (papan.getInventory().cekInventory(Key.KUNCI_HIJAU)) {
+                            papan.getMap()[player1.getLocationX()][player1.getLocationY() + 1] = new GridLantaiKosong();
+                        }
+                    } else if (temp.equals("Barrier")) {
+                        if (papan.getStats().getChipLeft() == 0) {
                             papan.getMap()[player1.getLocationX()][player1.getLocationY() + 1] = new GridLantaiKosong();
                         }
                     }
@@ -149,6 +157,10 @@ public class Controller implements Runnable, KeyListener {
                         if (papan.getInventory().cekInventory(Key.KUNCI_HIJAU)) {
                             papan.getMap()[player1.getLocationX() + 1][player1.getLocationY()] = new GridLantaiKosong();
                         }
+                    } else if (temp.equals("Barrier")) {
+                        if (papan.getStats().getChipLeft() == 0) {
+                            papan.getMap()[player1.getLocationX() + 1][player1.getLocationY()] = new GridLantaiKosong();
+                        }
                     }
                 }
             }
@@ -174,6 +186,10 @@ public class Controller implements Runnable, KeyListener {
                         if (papan.getInventory().cekInventory(Key.KUNCI_HIJAU)) {
                             papan.getMap()[player1.getLocationX() - 1][player1.getLocationY()] = new GridLantaiKosong();
                         }
+                    } else if (temp.equals("Barrier")) {
+                        if (papan.getStats().getChipLeft() == 0) {
+                            papan.getMap()[player1.getLocationX()- 1][player1.getLocationY()] = new GridLantaiKosong();
+                        }
                     }
                 }
             }
@@ -197,8 +213,8 @@ public class Controller implements Runnable, KeyListener {
             listItem = papan.getListItemDiMap();
             if (isMoving) {
                 moving();
-                animationTime +=selisih;
-                if (animationTime >=100) {
+                animationTime += selisih;
+                if (animationTime >= 100) {
 //                    System.out.println("a");
                     player1.nextFrame();
                     animationTime = 0;
@@ -207,7 +223,7 @@ public class Controller implements Runnable, KeyListener {
                 animationTime = 0;
                 player1.setCondition(Player.IDLE);
                 if (papan.getMap()[player1.getLocationX()][player1.getLocationY()].getNama().equals("Fire")) {
-                     if (!papan.getInventory().cekInventory(Boot.SEPATU_API)) {
+                    if (!papan.getInventory().cekInventory(Boot.SEPATU_API)) {
                         player1.setIsDead(true);
                         player1.setCondition(Player.GOSONG);
                     }
@@ -232,9 +248,6 @@ public class Controller implements Runnable, KeyListener {
                         papan.getInventory().addInventory(listItem.get(i));
                         listItem.remove(i);
                     }
-                }
-                if (papan.getStats().getChipLeft() == 0) {
-                    papan.getMap()[papan.getGridBarrierLocX()][papan.getGridBarrierLocY()] = new GridLantaiKosong();
                 }
             }
 
