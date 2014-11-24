@@ -41,7 +41,7 @@ public class Controller implements Runnable, KeyListener {
     }
 
     public Controller(Canvas c) {
-        curLevel = 1;
+        curLevel = 4;
         canvas = c;
         init();
     }
@@ -265,7 +265,6 @@ public class Controller implements Runnable, KeyListener {
             } catch (InterruptedException ex) {
             }
         }
-        //this.curLevel++;
         if (isFinish) {
             this.curLevel++;
         }

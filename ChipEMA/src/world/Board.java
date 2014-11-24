@@ -63,6 +63,9 @@ public class Board implements Drawable {
         int i, j;
         for (i = 0; i < map.length; i++) {
             for (j = 0; j < map[0].length; j++) {
+                if(map[i][j]==null)
+                    System.out.println(i +" "+j);
+                else
                 g2.drawImage(map[i][j].getImage(), i * 65, j * 65, null);
             }
         }
@@ -337,7 +340,124 @@ public class Board implements Drawable {
             this.stats = new Status(3, 20, 27,this.level);
             
         } else if (this.level == 4) {
-            throw new UnsupportedOperationException("blum jadi");
+             /**
+             * 0 1 2 3 4 5 6 7 8 9
+             * W W A A A A W W W W 0
+             * W E B F F F . F F W 1
+             * W W A A A A W F F W 2
+             * W K W W W W W F F W 3
+             * W F W W C C D D F W 4
+             * W 1 . D C P W W W W 5
+             * W W W W C W K K D W 6
+             * W 2 . D C C C W C W 7
+             * W A C C W K W W C W 8
+             * W W W W W W W W W W 9
+             * 0 1 2 3 4 5 6 7 8 9 
+             * Keterangan : -- W = Wall -- C = Chip / Integrated Circuit -- F =
+             * Fire -- E = Finnish/Exit -- B = Barrier -- . = Lantai Kosong -- K
+             * = Key -- D = Door --A =Air -- C = boot -- P = player
+             */
+            this.gridPlayerLocX=5;
+            this.gridPlayerLocY=5;
+            this.map[8][1]=new GridWater();
+            this.map[8][2]=new GridIC();
+            this.map[8][3]=new GridIC();
+            this.map[8][4]=new GridWall();
+            this.map[8][5]=new GridLantaiKosong();
+            items.add(new Key(8,5,Key.KUNCI_BIRU));
+            this.map[8][6]=new GridWall();
+            this.map[8][7]=new GridWall();
+            this.map[8][8]=new GridIC();
+            
+            this.map[7][1]=new GridLantaiKosong();
+            this.map[7][2]=new GridLantaiKosong();
+            this.map[7][3]=new GridDoor(GridDoor.PINTU_BIRU);
+            this.map[7][4]=new GridIC();
+            this.map[7][5]=new GridIC();
+            this.map[7][6]=new GridIC();
+            this.map[7][7]=new GridWall();
+            this.map[7][8]=new GridIC();
+            items.add(new Boot(7,1,Boot.SEPATU_AIR));
+            
+            this.map[6][1]=new GridWall();
+            this.map[6][2]=new GridWall();
+            this.map[6][3]=new GridWall();
+            this.map[6][4]=new GridIC();
+            this.map[6][5]=new GridWall();
+            this.map[6][6]=new GridLantaiKosong();
+            items.add(new Key(6, 6, Key.KUNCI_BIRU));
+            this.map[6][7]=new GridLantaiKosong();
+            items.add(new Key(6, 7, Key.KUNCI_MERAH));
+            this.map[6][8]=new GridDoor(GridDoor.PINTU_BIRU);
+            
+            this.map[5][1]=new GridLantaiKosong();
+            items.add(new Boot(5,1,Boot.SEPATU_AIR));
+            this.map[5][2]=new GridLantaiKosong();
+            this.map[5][3]=new GridWall();
+            this.map[5][4]=new GridIC();
+            this.map[5][5]=new GridLantaiKosong();
+            this.map[5][6]=new GridWall();
+            this.map[5][7]=new GridWall();
+            this.map[5][8]=new GridWall();
+            
+            this.map[4][1]=new GridLantaiKosong();
+            this.map[4][2]=new GridWall();
+            this.map[4][3]=new GridWall();
+            this.map[4][4]=new GridIC();
+            this.map[4][5]=new GridIC();
+            this.map[4][6]=new GridDoor(GridDoor.PINTU_BIRU);
+            this.map[4][7]=new GridDoor(GridDoor.PINTU_BIRU);
+            this.map[4][8]=new GridFire();
+            
+            this.map[3][1]=new GridLantaiKosong();
+            items.add(new Key(3,1,Key.KUNCI_BIRU));
+            this.map[3][2]=new GridWall();
+            this.map[3][3]=new GridWall();
+            this.map[3][4]=new GridWall();
+            this.map[3][5]=new GridWall();
+            this.map[3][6]=new GridFire();
+            this.map[3][7]=new GridFire();
+            this.map[3][8]=new GridFire();
+            
+            
+            this.map[2][1]=new GridWall();
+            this.map[2][2]=new GridWater();
+            this.map[2][3]=new GridWater();
+            this.map[2][4]=new GridWater();
+            this.map[2][5]=new GridWater();
+            this.map[2][6]=new GridWall();
+            this.map[2][7]=new GridFire();
+            this.map[2][8]=new GridFire();
+            
+            this.map[1][1]=new GridFinish();
+            this.map[1][2]=new GridBarrier();
+            this.map[1][3]=new GridFire();
+            this.map[1][4]=new GridFire();
+            this.map[1][5]=new GridFire();
+            this.map[1][6]=new GridLantaiKosong();
+            this.map[1][7]=new GridFire();
+            this.map[1][8]=new GridFire();
+            
+            this.map[0][1]=new GridWall();
+            
+            this.map[0][2]=new GridWater();
+            this.map[0][3]=new GridWater();
+            this.map[0][4]=new GridWater();
+            this.map[0][5]=new GridWater();
+            this.map[0][6]=new GridWall();
+            this.map[0][7]=new GridWall();
+            this.map[0][8]=new GridWall();
+           
+            //wall di kolom 0
+            int i,j;
+            for(i=0;i<10;i++)
+                this.map[i][0] = new GridLantaiKosong();
+            // di baris 9
+            for(i=0;i<10;i++)
+                this.map[9][i] = new GridLantaiKosong();
+            //di kolom 9
+            for(i=0;i<10;i++)
+                this.map[i][9] = new GridLantaiKosong();
         }
     }
 
