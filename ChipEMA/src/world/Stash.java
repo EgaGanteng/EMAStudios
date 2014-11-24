@@ -16,8 +16,8 @@ import java.util.Set;
 import java.util.Vector;
 
 /**
- *
- * @author i13047
+ * Class Stash adalah kelas untuk merepresentasikan tempat item item yang dimiliki oleh chip.
+ * @author EMA Studios
  */
 public class Stash implements Drawable {
 
@@ -34,10 +34,7 @@ public class Stash implements Drawable {
         font = new Font("VERDANA", Font.BOLD, 40) ;
     }
 
-    /*
-     kayaknya butuh, tempat penyimpanan baru deh,yang buat nyimpen letak2 inventorynya
-     biar ntar bisa di ambil
-     */
+    
     /**
      * Method untuk menambahkan inventory baru dalam stash
      */

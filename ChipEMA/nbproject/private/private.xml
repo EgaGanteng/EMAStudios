@@ -6,10 +6,10 @@
             <file>file:/D:/GitHub/EMAStudios/ChipEMA/src/world/Status.java</file>
             <file>file:/D:/GitHub/EMAStudios/ChipEMA/src/world/Board.java</file>
             <file>file:/D:/GitHub/EMAStudios/ChipEMA/src/world/Stash.java</file>
-            <file>file:/D:/GitHub/EMAStudios/ChipEMA/src/world/Item.java</file>
+            <file>file:/D:/GitHub/EMAStudios/ChipEMA/src/world/map/GridBarrier.java</file>
             <file>file:/D:/GitHub/EMAStudios/ChipEMA/src/controller/Controller.java</file>
-            <file>file:/D:/GitHub/EMAStudios/ChipEMA/src/image/fireBOOTS.jpg</file>
             <file>file:/D:/GitHub/EMAStudios/ChipEMA/src/view/Canvas.java</file>
+            <file>file:/D:/GitHub/EMAStudios/ChipEMA/src/world/Player.java</file>
         </group>
     </open-files>
 </project-private>

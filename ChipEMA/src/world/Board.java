@@ -20,13 +20,23 @@ public class Board implements Drawable {
     private int level;
     private Stash inventory;
     private Status stats;
-    private int gridBarrierLocX, gridBarrierLocY;
+    private int gridPlayerLocX, gridPlayerLocY;
     private Vector<Item> items;
 
+    /**
+     * Method untuk mendapatkan map.
+     *
+     * @return map
+     */
     public Grid[][] getMap() {
         return map;
     }
 
+    /**
+     * Method untuk mendapatkan level
+     *
+     * @return level.
+     */
     public int getLevel() {
         return level;
     }
@@ -43,7 +53,7 @@ public class Board implements Drawable {
         this.level = level;
         this.map = new Grid[10][10];
         this.inventory = new Stash();
-        this.items=new Vector<Item>();
+        this.items = new Vector<Item>();
         this.setMap();
     }
 
@@ -61,12 +71,11 @@ public class Board implements Drawable {
         }
 
     }
-    
-    public Vector<Item> getListItemDiMap()
-    {
+
+    public Vector<Item> getListItemDiMap() {
         return this.items;
     }
-    
+
     public void setMap() {
         if (this.level == 1) {
             /**
@@ -89,13 +98,12 @@ public class Board implements Drawable {
             /**
              * Lantai Kosong i baris 8 kolom 2-6
              */
-            
+
             //Item item yang tersedia di level ini
-            items.add(new Key(1,6,Key.KUNCI_BIRU));
-            items.add(new Boot(1,5,Boot.SEPATU_API));
-            items.add(new Boot(1,4,Boot.SEPATU_AIR));
-            
-            
+            items.add(new Key(1, 6, Key.KUNCI_BIRU));
+            items.add(new Boot(1, 5, Boot.SEPATU_API));
+            items.add(new Boot(1, 4, Boot.SEPATU_AIR));
+
             for (int i = 2; i <= 6; i++) {
                 this.map[i][8] = new GridLantaiKosong();
             }
@@ -156,8 +164,8 @@ public class Board implements Drawable {
             this.map[3][5] = new GridWall();//Wall di baris 5 kolom 3.
 
             this.map[2][1] = new GridBarrier(); // barrier di baris 1 kolom 2
-            this.gridBarrierLocX = 2;
-            this.gridBarrierLocY = 1;
+            this.gridPlayerLocX = 6;
+            this.gridPlayerLocY = 8;
             this.map[1][2] = new GridFinish(); // Finnish di baris 2 kolom 1
             this.map[7][1] = new GridLantaiKosong(); // Key di baris 1 kolom 7
             this.map[8][7] = new GridDoor(GridDoor.PINTU_BIRU); // Door di baris 7 kolom 8
@@ -188,30 +196,63 @@ public class Board implements Drawable {
              * Integrated Circuit di: Baris,Kolom : (8,1) , (8,8),(4,3),(1,3).
              */
             this.map[1][8] = this.map[8][8] = this.map[3][4] = this.map[3][1] = new GridIC();
-            this.stats = new Status(10, 20, 4,this.level);
-            
-        } else if (this.level == 2) {
-            this.map = new Grid[2][2];
-            this.map[0][1] = new GridLantaiKosong();
-            this.map[1][0] = new GridWall();
-            this.map[1][1] = new GridFinish();
-            this.map[0][0] = new GridBarrier();
-        } else if (this.level == 3) {
+            this.stats = new Status(10, 20, 4, this.level);
 
+        } else if (this.level == 2) {
+            this.map = new Grid[10][10];
+            GridWall wall = new GridWall();
+            GridFire api = new GridFire();
+            GridWater water = new GridWater();
+            GridIC IC = new GridIC();
+            GridLantaiKosong lantaiKosong = new GridLantaiKosong();
+            map[0][0] = wall;
+            for (int i = 1; i <= 8; i++) {
+                for (int j = 1; j <= 8; j++) {
+                    map[i][j] = lantaiKosong;
+                }
+            }
+            for (int i = 1; i < map.length; i++) {
+                map[i][0] = map[0][i] = map[9][i] = map[i][9] = wall;
+            }
+            for (int i = 5; i <= 8; i++) {
+                map[i][2] = wall;
+            }
+            map[6][3] = map[6][4] = map[7][4] = map[6][6] = wall;
+            for (int i = 6; i <= 8; i++) {
+                map[i][7] = wall;
+            }
+//            map[1][1] = map[1][8] = map[6][1] = map[7][3] =  lantaiKosong;
+            items.add(new Boot(1, 1, Boot.SEPATU_AIR));
+            items.add(new Key(1, 8, Key.KUNCI_MERAH));
+            items.add(new Boot(6, 1, Boot.SEPATU_API));
+            items.add(new Key(7, 3, Key.KUNCI_BIRU));
+            stats = new Status(10, 10, 3, level);
+            map[6][8] =map[3][6] =map[4][4] = IC;
+            gridPlayerLocX = 8;
+            gridPlayerLocY = 8;
+            map[5][1] = new GridBarrier();
+            map[7][1] = new GridDoor(GridDoor.PINTU_BIRU);
+            map[8][1] = new GridFinish();
+            map[6][5] = new GridDoor(GridDoor.PINTU_MERAH);
+            map[2][1] = map[3][1] = map[1][2] = map[2][2] = map[3][2] = map[1][3] = map[2][3] = api;
+            map[1][6] = map[2][6] = map[1][7] = map[2][7] = map[3][7] = map[2][8] = map[3][8] = map[8][4] = water;
+            
+        } else if (this.level == 3) {
+            throw new UnsupportedOperationException("blum jadi");
         }
     }
 
-    public int getGridBarrierLocX() {
-        return gridBarrierLocX;
+    public int getGridPlayerLocX() {
+        return gridPlayerLocX;
     }
 
-    public int getGridBarrierLocY() {
-        return gridBarrierLocY;
+    public int getGridPlayerLocY() {
+        return gridPlayerLocY;
     }
 
     @Override
     public void drawAt(Graphics g, int offsetX, int offsetY) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
 
 }

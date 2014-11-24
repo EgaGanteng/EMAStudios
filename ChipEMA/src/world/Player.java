@@ -23,15 +23,23 @@ public class Player implements Drawable {
     private Point location;
     private boolean isDead;
     private BufferedImage[] chip;
-    private int pixelLocX, pixelLocY;
     private int animationIteration;
     private int condition;
     public static int ATAS = 0, KANAN = 1, BAWAH = 2, KIRI = 3, IDLE = -1, GOSONG = 4, NYEMPLUNG = 5;
 
+    /**
+     * Method untuk mendapakan lokasi X player.
+     * @return lokasi x
+     */
     public int getLocationX() {
         return location.x;
     }
 
+    /**
+     * Constructor ini untuk membuat suatu player baru dengan lokasi x dengan y.
+     * @param x
+     * @param y 
+     */
     public Player(int x, int y) {
         this.location = new Point(x, y);
         this.isDead = false;
@@ -66,14 +74,26 @@ public class Player implements Drawable {
         }
     }
 
+    /**
+     * Method untuk mendapatkan gambar Chip.
+     * @return 
+     */
     public BufferedImage getImageChip() {
         return chip[animationIteration];
     }
 
+    /**
+     * Getter untuk mendapatkan lokasi Y chip
+     * @return lokasi y
+     */
     public int getLocationY() {
         return location.y;
     }
 
+    /**
+     * Method untuk menggerakkan chip ke arah tertentu
+     * @param direction contoh= Player.ATAS
+     */
     public void move(int direction) {
         if (direction == ATAS) {
             this.location.y--;
@@ -94,6 +114,9 @@ public class Player implements Drawable {
         }
     }
 
+    /**
+     * Method untuk mengiterasikan urutan animasi chip agar berubah ke frame yang selanjutnya
+     */
     public void nextFrame() {
         if (condition != IDLE && condition != GOSONG && condition != NYEMPLUNG) {
             animationIteration++;
@@ -118,6 +141,10 @@ public class Player implements Drawable {
         }
     }
 
+    /**
+     * Method untuk menset kondisi player.
+     * @param condition contoh Player.GOSONG
+     */
     public void setCondition(int condition) {
         this.condition = condition;
         if (condition == IDLE) {
@@ -137,10 +164,18 @@ public class Player implements Drawable {
         }
     }
 
+    /**
+     * Method untuk mensetPlayer apakah sudah mati atau hidup.
+     * @param isDead 
+     */
     public void setIsDead(boolean isDead) {
         this.isDead = isDead;
     }
 
+    /**
+     * Method untuk mengetahui apakan player sudah mati atau masih hidup.
+     * @return 
+     */
     public boolean isIsDead() {
         return isDead;
     }
@@ -148,17 +183,7 @@ public class Player implements Drawable {
     @Override
     public void drawDefault(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
-//        g2.drawRect(location.x, location.y,100 , 100);
-        g2.drawImage(chip[animationIteration], location.x * 65, location.y * 65, null);
-//        BufferedImage img = null;
-//        URL imgUrl = getClass().getClassLoader().getResource("image/barrier.jpg");
-//        try {
-//            img = ImageIO.read(imgUrl);
-//        } catch (IOException ex) {
-//            ex.printStackTrace();
-//        }
-//        g2.drawImage(img, 0, 0, null);
-    }
+        g2.drawImage(chip[animationIteration], 0, 0, null);    }
 
     @Override
     public void drawAt(Graphics g, int offsetX, int offsetY) {

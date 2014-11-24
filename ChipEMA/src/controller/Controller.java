@@ -29,6 +29,7 @@ public class Controller implements Runnable, KeyListener {
     private Drawable[] drawable;
     private Vector<Item> listItem;
     private boolean isMoving;
+    private int curLevel;
     private long startTime;
 
     public int getPlayerPixelLocX() {
@@ -40,13 +41,19 @@ public class Controller implements Runnable, KeyListener {
     }
 
     public Controller(Canvas c) {
+        curLevel = 1;
+        canvas = c;
+        init();
+    }
+
+    private void init() {
+
         isFinish = false;
-        this.papan = new Board(1);
-        player1 = new Player(6, 8);
+        this.papan = new Board(this.curLevel);
+        player1 = new Player(papan.getGridPlayerLocX(), papan.getGridPlayerLocY());
         isMoving = false;
         this.playerPixelLocX = player1.getLocationX() * 65;
         this.playerPixelLocY = player1.getLocationY() * 65;
-        canvas = c;
         thread = new Thread(this);
         this.drawable = new Drawable[4];
         drawable[0] = this.player1;
@@ -54,6 +61,7 @@ public class Controller implements Runnable, KeyListener {
         drawable[2] = papan.getInventory();
         drawable[3] = papan.getStats();
         startTime = System.currentTimeMillis();
+
     }
 
     public void start() {
@@ -188,7 +196,7 @@ public class Controller implements Runnable, KeyListener {
                         }
                     } else if (temp.equals("Barrier")) {
                         if (papan.getStats().getChipLeft() == 0) {
-                            papan.getMap()[player1.getLocationX()- 1][player1.getLocationY()] = new GridLantaiKosong();
+                            papan.getMap()[player1.getLocationX() - 1][player1.getLocationY()] = new GridLantaiKosong();
                         }
                     }
                 }
@@ -257,6 +265,13 @@ public class Controller implements Runnable, KeyListener {
             } catch (InterruptedException ex) {
             }
         }
+        //this.curLevel++;
+        if (isFinish) {
+            this.curLevel++;
+        }
+        init();
+        run();
+
     }
 
     public void moving() {

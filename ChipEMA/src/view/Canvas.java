@@ -48,8 +48,8 @@ public class Canvas extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        img.getGraphics().setColor(Color.white);
         Graphics2D g2img = (Graphics2D)img.getGraphics();
+        g2img.setColor(Color.white);
         g2img.fillRect(0, 0, 1024, 600);
         g2img.setTransform(at);
         ctrl.getAllDrawable()[1].drawDefault(g2img);//board
