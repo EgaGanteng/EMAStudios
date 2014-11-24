@@ -3,13 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/GitHub/EMAStudios/ChipEMA/src/world/Status.java</file>
-            <file>file:/D:/GitHub/EMAStudios/ChipEMA/src/world/Board.java</file>
-            <file>file:/D:/GitHub/EMAStudios/ChipEMA/src/world/Stash.java</file>
-            <file>file:/D:/GitHub/EMAStudios/ChipEMA/src/world/map/GridBarrier.java</file>
-            <file>file:/D:/GitHub/EMAStudios/ChipEMA/src/controller/Controller.java</file>
-            <file>file:/D:/GitHub/EMAStudios/ChipEMA/src/view/Canvas.java</file>
-            <file>file:/D:/GitHub/EMAStudios/ChipEMA/src/world/Player.java</file>
+            <file>file:/D:/kuliah/smt3/adbo/EMAStudios/ChipEMA/src/controller/Controller.java</file>
+            <file>file:/D:/kuliah/smt3/adbo/EMAStudios/ChipEMA/src/world/map/GridDoor.java</file>
+            <file>file:/D:/kuliah/smt3/adbo/EMAStudios/ChipEMA/src/world/Board.java</file>
+            <file>file:/D:/kuliah/smt3/adbo/EMAStudios/ChipEMA/src/chipchallenge/ChipChallenge.java</file>
         </group>
     </open-files>
 </project-private>

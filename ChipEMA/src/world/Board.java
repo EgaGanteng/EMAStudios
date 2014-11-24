@@ -238,6 +238,105 @@ public class Board implements Drawable {
             map[1][6] = map[2][6] = map[1][7] = map[2][7] = map[3][7] = map[2][8] = map[3][8] = map[8][4] = water;
             
         } else if (this.level == 3) {
+            /**
+             * 0 1 2 3 4 5 6 7 8 9
+             * W A A A A A W W W W 0
+             * 1 P F C C C W K F W 1
+             * F F F C C C W C F W 2
+             * W D W W W C W F F W 3
+             * W B W C F C C C C W 4
+             * W E W W W C W W W W 5
+             * W W W 2 W C C C K W 6
+             * W C C C W C C F D W 7
+             * W C C C D C C W K W 8
+             * W W W W W W W W W W 9
+             * 0 1 2 3 4 5 6 7 8 9 
+             * Keterangan : -- W = Wall -- C = Chip / Integrated Circuit -- F =
+             * Fire -- E = Finnish/Exit -- B = Barrier -- . = Lantai Kosong -- K
+             * = Key -- D = Door --A =Air -- C = boot -- P = player
+             */
+
+            gridPlayerLocX = 1;
+            gridPlayerLocY = 1;
+            /**
+             * Lantai Kosong
+             */
+            this.map[8][8] = this.map[8][6] = this.map[7][1] = this.map[1][1] = this.map[3][7] = new GridLantaiKosong(); 
+            this.map[0][1] = this.map[3][6] = new GridLantaiKosong();
+            
+            //Item item yang tersedia di level ini
+            items.add(new Key(8,6,Key.KUNCI_BIRU));
+            items.add(new Key(7,1,Key.KUNCI_HIJAU));
+            items.add(new Key(8,8,Key.KUNCI_MERAH));
+            items.add(new Boot(3,6,Boot.SEPATU_API));
+            items.add(new Boot(0,1,Boot.SEPATU_AIR));
+            
+            this.map[4][8] = new GridDoor(GridDoor.PINTU_BIRU); // Door biru di baris 8 kolom 4
+            this.map[8][7] = new GridDoor(GridDoor.PINTU_HIJAU);//door biru di baris 7 kolom 8
+            this.map[1][3] = new GridDoor(GridDoor.PINTU_MERAH);//door biru di baris 7 kolom 8
+            /**
+             * IC
+             */
+            for(int i=1;i<=8;i++){
+                this.map[5][i] = new GridIC();
+            }
+            this.map[1][7] = this.map[1][8] = this.map[2][8] = this.map[3][8] = this.map[3][7] = new GridIC(); 
+            this.map[6][8] = this.map[6][7] = this.map[6][6] = this.map[7][6] = this.map[6][4] = new GridIC(); 
+            this.map[7][4] = this.map[8][4] = this.map[7][2] = this.map[3][4] = this.map[5][8] = new GridIC();
+            this.map[3][1] = this.map[4][1] = this.map[3][2] = this.map[4][2] = this.map[2][7] = new GridIC();
+ 
+            /**
+             * Barrier & finish
+             */
+            this.map[1][4] = new GridBarrier();
+            this.map[1][5] = new GridFinish();
+            /**
+             * Fire
+             */
+            this.map[0][2] = this.map[1][2] = this.map[2][2] = this.map[2][1] = this.map[7][3] = new GridFire(); 
+            this.map[8][3] = this.map[8][2] = this.map[8][1] = this.map[7][7] = this.map[7][8] = new GridFire(); 
+            this.map[4][4] = new GridFire();
+            
+            /**
+             * Wall
+             */
+            for(int i=3;i<=8;i++){
+                this.map[0][i] = new GridWall();
+            }
+            this.map[4][6] = this.map[4][7] = new GridWall();
+            this.map[3][5] = this.map[4][5] = this.map[6][5] = this.map[7][5] = this.map[8][5] = new GridWall(); 
+            this.map[6][1] = this.map[6][2] = this.map[6][3] = this.map[3][3] = this.map[4][3] = new GridWall();
+            this.map[1][6] = this.map[2][6] = this.map[2][5] = this.map[2][4] = this.map[2][3] = new GridWall(); 
+
+            /**
+             * Wall di kolom 9 & baris 9
+             */
+            for(int i=0;i<=9;i++){
+                this.map[9][i] = new GridWall();
+                this.map[i][9] = new GridWall();
+            }
+            
+            
+            /**
+             * Wall di baris 0
+             */
+            this.map[0][0] = this.map[7][8] = new GridWall();
+            
+            for(int i=6;i<=8;i++){
+                this.map[i][0] = new GridWall();
+            }
+            /**
+             * Air di baris 0
+             */
+            for(int i=1;i<=5;i++){
+                this.map[i][0] = new GridWater();
+            }
+            
+            
+            
+            this.stats = new Status(3, 20, 27,this.level);
+            
+        } else if (this.level == 4) {
             throw new UnsupportedOperationException("blum jadi");
         }
     }
