@@ -23,8 +23,8 @@ public abstract class Item {
             
     /**
      * Constructor untuk menginisialisasi Item. Dengan lokasi X dan Y.
-     * @param x
-     * @param y 
+     * @param x koordinat x dimana item dibuat
+     * @param y koordinat y dimana item dibuat
      */
     public Item(int x, int y)
     {
@@ -57,7 +57,7 @@ public abstract class Item {
     }
     
     /**
-     * Getter untuk mendapatkan nilai X.
+     * Getter untuk mendapatkan attribute x koordinat item.
      * @return x
      */
     public int getX()
@@ -66,7 +66,7 @@ public abstract class Item {
     }
     
     /**
-     * Getter untuk mendapatkan nilai Y
+     * Getter untuk mendapatkan attribute y koordinat item.
      * @return y.
      */
     public int getY()

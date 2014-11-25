@@ -34,7 +34,10 @@ public class Status implements Drawable{
     private StringBuilder chipLeftDisplay;
     private Font displayFont;
     private String levelDisplay;
-
+    
+    /**
+     * Constuctor yang digunakan untuk menginisialisasi attribute - attibute kelas status
+     */
     public Status(int menit, int detik, int chipLeft,int level) {
         this.minutes = menit;
         this.seconds = detik;
@@ -66,9 +69,14 @@ public class Status implements Drawable{
         chipLeft -= by;
     }
 
+    /**
+     * Method untuk mendapatkan jumlah chip yang tersisa di permainan
+     * @return jumlah chip yang tersisa di permainan
+     */
     public int getChipLeft() {
         return chipLeft;
     }
+    
     
     public void decreaseTimeByMilis(int milidetik){
         this.milliseconds -=milidetik ;
@@ -87,11 +95,11 @@ public class Status implements Drawable{
         } else {
             this.milliseconds--;
         }
-        if (this.seconds == 0 && this.minutes > 0) {
+        if (this.seconds < 0 && this.minutes > 0) {
             this.seconds = 59;
             this.minutes--;
         }
-        if (this.milliseconds == 0 && this.seconds == 0 && this.minutes == 0) {
+        if (this.milliseconds < 0 && this.seconds < 0 && this.minutes < 0) {
             this.milliseconds = this.seconds = this.minutes = 0;
 //            System.out.println("Waktu Habis!");
         }

@@ -12,8 +12,8 @@ import javax.swing.JFrame;
 import view.Canvas;
 
 /**
- * Method inti yang menjalankan Game.
- * @author Ega Prianto
+ * Kelas inti yang menjalankan Game.
+ * @author EMA STUDIOS
  */
 public class ChipChallenge {
     public static void main(String[] args) {

@@ -7,8 +7,9 @@ package world;
 import java.awt.image.BufferedImage;
 
 /**
- *
- * @author Antonius
+ * Kelas yang merepresentasikan kunci yang akan digunakan dalam game ini,
+ * Kelas ini digunakan untuk membuka pintu jika warna key dan warna kunci sama.
+ * @author EMA Studios
  */
 public class Key extends Item{
     public final static String KUNCI_BIRU="KUNCI BIRU";

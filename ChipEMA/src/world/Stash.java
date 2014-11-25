@@ -28,6 +28,9 @@ public class Stash implements Drawable {
     private Vector isiStash;
     private Font font;
 
+    /**
+     * Constuctor untuk menginisialisasi attribute kelas Stash
+     */
     public Stash() {
         this.inventoryList = new HashMap<String, Integer>();
         isiStash = new Vector();
@@ -68,7 +71,10 @@ public class Stash implements Drawable {
             return false;
         }
     }
-
+    
+    /**
+     * Method untuk mengupdate inventory setiap item dalam inventory dipakai
+     */
     private void updateInventory() {
         Set set = this.inventoryList.entrySet();
         Iterator i = set.iterator();

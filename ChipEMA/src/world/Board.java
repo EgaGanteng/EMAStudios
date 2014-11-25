@@ -11,11 +11,11 @@ import java.util.Vector;
 import world.map.*;
 
 /**
- *
- * @author i13047
+ * Kelas untuk menginterpretasikan map permainan dari chip challenge, map digambar berdasarkan level yang diinginkan
+ * @author EMA STUDIOS
  */
 public class Board implements Drawable {
-
+    
     private Grid[][] map;
     private int level;
     private Stash inventory;
@@ -24,31 +24,9 @@ public class Board implements Drawable {
     private Vector<Item> items;
 
     /**
-     * Method untuk mendapatkan map.
-     *
-     * @return map
+     * Constructor untuk menginisialisasi attribute - attribute dari kelas Board
+     * @param level level map yang ingin dibuat
      */
-    public Grid[][] getMap() {
-        return map;
-    }
-
-    /**
-     * Method untuk mendapatkan level
-     *
-     * @return level.
-     */
-    public int getLevel() {
-        return level;
-    }
-
-    public Stash getInventory() {
-        return inventory;
-    }
-
-    public Status getStats() {
-        return stats;
-    }
-
     public Board(int level) {
         this.level = level;
         this.map = new Grid[10][10];
@@ -56,7 +34,39 @@ public class Board implements Drawable {
         this.items = new Vector<Item>();
         this.setMap();
     }
+    
+    /**
+     * Method untuk mendapatkan map permainan saat ini
+     * @return map pada saat method dipanggil
+     */
+    public Grid[][] getMap() {
+        return map;
+    }
 
+    /**
+     * Method untuk mendapatkan level permainan
+     * @return level.
+     */
+    public int getLevel() {
+        return level;
+    }
+    
+    /**
+     * Method untuk mendapatkan referensi dari objek stash yang digunakan oleh kelas Board ini
+     * @return referensi objek stash
+     */
+    public Stash getInventory() {
+        return inventory;
+    }
+    
+    /**
+     * Method untuk mendapatkan referensi dari objek status yang digunakan oleh kelas Board ini
+     * @return referensi objek status
+     */
+    public Status getStats() {
+        return stats;
+    }
+    
     @Override
     public void drawDefault(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
@@ -74,11 +84,18 @@ public class Board implements Drawable {
         }
 
     }
-
+    
+    /**
+     * Method untuk mendapatkan list item apa sajakan yang terdapat di map permainan
+     * @return list item yang digunakan di game
+     */
     public Vector<Item> getListItemDiMap() {
         return this.items;
     }
-
+    
+    /**
+     * Method untuk menset map yang akan digunakan dalam permainan nanti, tergantung dari level yang diset
+     */
     public void setMap() {
         if (this.level == 1) {
             /**
@@ -359,114 +376,128 @@ public class Board implements Drawable {
              */
             this.gridPlayerLocX=5;
             this.gridPlayerLocY=5;
-            this.map[8][1]=new GridWater();
-            this.map[8][2]=new GridIC();
-            this.map[8][3]=new GridIC();
-            this.map[8][4]=new GridWall();
-            this.map[8][5]=new GridLantaiKosong();
-            items.add(new Key(8,5,Key.KUNCI_BIRU));
-            this.map[8][6]=new GridWall();
-            this.map[8][7]=new GridWall();
-            this.map[8][8]=new GridIC();
+            GridWater gw=new GridWater();
+            GridFire gf=new GridFire();
+            GridIC gi=new GridIC();
+            GridWall gwa=new GridWall();
+            GridLantaiKosong glk=new GridLantaiKosong();
             
-            this.map[7][1]=new GridLantaiKosong();
-            this.map[7][2]=new GridLantaiKosong();
+            this.map[8][1]=gw;
+            this.map[8][2]=gi;
+            this.map[8][3]=gi;
+            this.map[8][4]=gwa;
+            this.map[8][5]=glk;
+            items.add(new Key(8,5,Key.KUNCI_BIRU));
+            this.map[8][6]=gwa;
+            this.map[8][7]=gwa;
+            this.map[8][8]=gi;
+            
+            this.map[7][1]=glk;
+            this.map[7][2]=gf;
             this.map[7][3]=new GridDoor(GridDoor.PINTU_BIRU);
-            this.map[7][4]=new GridIC();
-            this.map[7][5]=new GridIC();
-            this.map[7][6]=new GridIC();
-            this.map[7][7]=new GridWall();
-            this.map[7][8]=new GridIC();
+            this.map[7][4]=gi;
+            this.map[7][5]=gi;
+            this.map[7][6]=gi;
+            this.map[7][7]=gwa;
+            this.map[7][8]=gi;
             items.add(new Boot(7,1,Boot.SEPATU_AIR));
             
-            this.map[6][1]=new GridWall();
-            this.map[6][2]=new GridWall();
-            this.map[6][3]=new GridWall();
-            this.map[6][4]=new GridIC();
-            this.map[6][5]=new GridWall();
-            this.map[6][6]=new GridLantaiKosong();
+            this.map[6][1]=gwa;
+            this.map[6][2]=gwa;
+            this.map[6][3]=gwa;
+            this.map[6][4]=gi;
+            this.map[6][5]=gwa;
+            this.map[6][6]=glk;
             items.add(new Key(6, 6, Key.KUNCI_BIRU));
-            this.map[6][7]=new GridLantaiKosong();
+            this.map[6][7]=glk;
             items.add(new Key(6, 7, Key.KUNCI_MERAH));
             this.map[6][8]=new GridDoor(GridDoor.PINTU_BIRU);
             
-            this.map[5][1]=new GridLantaiKosong();
-            items.add(new Boot(5,1,Boot.SEPATU_AIR));
-            this.map[5][2]=new GridLantaiKosong();
-            this.map[5][3]=new GridWall();
-            this.map[5][4]=new GridIC();
-            this.map[5][5]=new GridLantaiKosong();
-            this.map[5][6]=new GridWall();
-            this.map[5][7]=new GridWall();
-            this.map[5][8]=new GridWall();
+            this.map[5][1]=glk;
+            items.add(new Boot(5,1,Boot.SEPATU_API));
+            this.map[5][2]=glk;
+            this.map[5][3]=new GridDoor(GridDoor.PINTU_BIRU);
+            this.map[5][4]=gi;
+            this.map[5][5]=glk;
+            this.map[5][6]=gwa;
+            this.map[5][7]=gwa;
+            this.map[5][8]=gwa;
             
-            this.map[4][1]=new GridLantaiKosong();
-            this.map[4][2]=new GridWall();
-            this.map[4][3]=new GridWall();
-            this.map[4][4]=new GridIC();
-            this.map[4][5]=new GridIC();
-            this.map[4][6]=new GridDoor(GridDoor.PINTU_BIRU);
+            this.map[4][1]=gw;
+            this.map[4][2]=gwa;
+            this.map[4][3]=gwa;
+            this.map[4][4]=gi;
+            this.map[4][5]=gi;
+            this.map[4][6]=new GridDoor(GridDoor.PINTU_MERAH);
             this.map[4][7]=new GridDoor(GridDoor.PINTU_BIRU);
-            this.map[4][8]=new GridFire();
+            this.map[4][8]=gf;
             
-            this.map[3][1]=new GridLantaiKosong();
+            this.map[3][1]=glk;
             items.add(new Key(3,1,Key.KUNCI_BIRU));
-            this.map[3][2]=new GridWall();
-            this.map[3][3]=new GridWall();
-            this.map[3][4]=new GridWall();
-            this.map[3][5]=new GridWall();
-            this.map[3][6]=new GridFire();
-            this.map[3][7]=new GridFire();
-            this.map[3][8]=new GridFire();
+            this.map[3][2]=gwa;
+            this.map[3][3]=gwa;
+            this.map[3][4]=gwa;
+            this.map[3][5]=gwa;
+            this.map[3][6]=gf;
+            this.map[3][7]=gf;
+            this.map[3][8]=gf;
             
             
-            this.map[2][1]=new GridWall();
-            this.map[2][2]=new GridWater();
-            this.map[2][3]=new GridWater();
-            this.map[2][4]=new GridWater();
-            this.map[2][5]=new GridWater();
-            this.map[2][6]=new GridWall();
-            this.map[2][7]=new GridFire();
-            this.map[2][8]=new GridFire();
+            this.map[2][1]=gwa;
+            this.map[2][2]=gw;
+            this.map[2][3]=gw;
+            this.map[2][4]=gw;
+            this.map[2][5]=gw;
+            this.map[2][6]=gf;
+            this.map[2][7]=gf;
+            this.map[2][8]=gf;
             
             this.map[1][1]=new GridFinish();
             this.map[1][2]=new GridBarrier();
-            this.map[1][3]=new GridFire();
-            this.map[1][4]=new GridFire();
-            this.map[1][5]=new GridFire();
-            this.map[1][6]=new GridLantaiKosong();
-            this.map[1][7]=new GridFire();
-            this.map[1][8]=new GridFire();
+            this.map[1][3]=gf;
+            this.map[1][4]=gf;
+            this.map[1][5]=gf;
+            this.map[1][6]=glk;
+            this.map[1][7]=gf;
+            this.map[1][8]=gf;
             
-            this.map[0][1]=new GridWall();
+            this.map[0][1]=gwa;
             
-            this.map[0][2]=new GridWater();
-            this.map[0][3]=new GridWater();
-            this.map[0][4]=new GridWater();
-            this.map[0][5]=new GridWater();
-            this.map[0][6]=new GridWall();
-            this.map[0][7]=new GridWall();
-            this.map[0][8]=new GridWall();
+            this.map[0][2]=gw;
+            this.map[0][3]=gw;
+            this.map[0][4]=gw;
+            this.map[0][5]=gw;
+            this.map[0][6]=gwa;
+            this.map[0][7]=gwa;
+            this.map[0][8]=gwa;
            
             //wall di kolom 0
             int i,j;
             for(i=0;i<10;i++)
-                this.map[i][0] = new GridLantaiKosong();
+                this.map[i][0] = gwa;
             // di baris 9
             for(i=0;i<10;i++)
-                this.map[9][i] = new GridLantaiKosong();
+                this.map[9][i] = gwa;
             //di kolom 9
             for(i=0;i<10;i++)
-                this.map[i][9] = new GridLantaiKosong();
+                this.map[i][9] = gwa;
             
-            stats = new Status(10, 10, 4, level);
+            stats = new Status(5, 0 , 11, level);
         }
     }
-
+    
+    /**
+     * Method untuk mendapatkan lokasi koordinat x player pada saat game dimulai
+     * @return lokasi koordinat x player pada saat game dimulai
+     */
     public int getGridPlayerLocX() {
         return gridPlayerLocX;
     }
-
+    
+    /**
+     * Method untuk mendapatkan lokasi koordinat y player pada saat game dimulai
+     * @return lokasi koordinat y player pada saat game dimulai 
+     */
     public int getGridPlayerLocY() {
         return gridPlayerLocY;
     }

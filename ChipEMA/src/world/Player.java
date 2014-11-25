@@ -15,8 +15,8 @@ import javax.imageio.ImageIO;
 import sun.security.action.GetLongAction;
 
 /**
- *
- * @author i13047
+ * Kelas untuk merepresentasikan Chip yang akan digunakan dalam permainan chip challenge ini
+ * @author EMA Studios
  */
 public class Player implements Drawable {
 
@@ -37,8 +37,8 @@ public class Player implements Drawable {
 
     /**
      * Constructor ini untuk membuat suatu player baru dengan lokasi x dengan y.
-     * @param x
-     * @param y 
+     * @param x koordinat x dimana player dibuat
+     * @param y koordinat y dimana player dibuat
      */
     public Player(int x, int y) {
         this.location = new Point(x, y);
@@ -76,7 +76,7 @@ public class Player implements Drawable {
 
     /**
      * Method untuk mendapatkan gambar Chip.
-     * @return 
+     * @return image yang digunakan untuk menggambar chip
      */
     public BufferedImage getImageChip() {
         return chip[animationIteration];
@@ -166,7 +166,7 @@ public class Player implements Drawable {
 
     /**
      * Method untuk mensetPlayer apakah sudah mati atau hidup.
-     * @param isDead 
+     * @param kondisi apakah player hidup atau tidak
      */
     public void setIsDead(boolean isDead) {
         this.isDead = isDead;
@@ -174,7 +174,7 @@ public class Player implements Drawable {
 
     /**
      * Method untuk mengetahui apakan player sudah mati atau masih hidup.
-     * @return 
+     * @return true jika player sudah mati, false jika player belum mati 
      */
     public boolean isIsDead() {
         return isDead;

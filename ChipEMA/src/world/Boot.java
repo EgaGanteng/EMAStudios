@@ -18,7 +18,7 @@ public class Boot extends Item{
      * Constructor untuk meninisialisasi Attribut-attribut dari kelas Boot.
      * @param x lokasi X Boot dibuat
      * @param y lokasi Y Boot dibuat
-     * @param jenisBoot untuk menentukan jenis ketahananan sepatu, apakah sepatu tahan air atau sepatu atau tahan apo
+     * @param jenisBoot untuk menentukan jenis ketahananan sepatu, apakah sepatu tahan air atau sepatu api
      */
     public Boot(int x, int y,String jenisBoot)
     {
