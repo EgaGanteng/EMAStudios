@@ -458,6 +458,8 @@ public class Board implements Drawable {
             //di kolom 9
             for(i=0;i<10;i++)
                 this.map[i][9] = new GridLantaiKosong();
+            
+            stats = new Status(10, 10, 4, level);
         }
     }
 
