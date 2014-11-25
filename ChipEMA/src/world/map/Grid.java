@@ -30,7 +30,10 @@ public abstract class Grid {
     public Grid() {
 
     }
-
+    
+    /**
+     * Method untuk menload image untuk grid yang akan digambar nanti
+     */
     public void loadImage() {
         URL imgUrl = getClass().getClassLoader().getResource(imgFileName);
         try {
@@ -39,7 +42,11 @@ public abstract class Grid {
             ex.printStackTrace();
         }
     }
-
+    
+    /**
+     * Method untuk mendapatkan image yang digunakan dalam kelas Grid 
+     * @return image Kelas Grid
+     */
     public BufferedImage getImage() {
         if (this.img == null) {
             loadImage();
@@ -47,14 +54,27 @@ public abstract class Grid {
         return this.img;
     }
 
+    /**
+     * Method untuk mengecek apakah grid dapat dilangkahi oleh chip atau tidak
+     * @return true jika dapat dilangkahi oleh chip, false jika tidak
+     */
     public boolean isSteppable() {
         return isSteppable;
     }
-
+    
+    /**
+     * Method untuk mengecek apakah kelas grid dapat diganti tipe gridnya,
+     * Seperti grid yang asalnya GridDoor dapat diganti menjadi Grid lantai kosong
+     * @return 
+     */
     public boolean isEditable() {
         return isEditable;
     }
-
+    
+    /**
+     * Method untuk mendapatkan nama Grid
+     * @return nama Grid
+     */
     public String getNama() {
         return nama;
     }
