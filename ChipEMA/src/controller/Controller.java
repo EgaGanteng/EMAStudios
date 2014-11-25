@@ -41,7 +41,7 @@ public class Controller implements Runnable, KeyListener {
     }
 
     public Controller(Canvas c) {
-        curLevel = 4;
+        curLevel = 1;
         canvas = c;
         init();
     }
