@@ -77,7 +77,10 @@ public class Status implements Drawable{
         return chipLeft;
     }
     
-    
+    /**
+     * Method untuk menguragi status waktu, dengan miliseconds.
+     * @param milidetik 
+     */
     public void decreaseTimeByMilis(int milidetik){
         this.milliseconds -=milidetik ;
         timeDisplay.delete(0, timeDisplay.length());

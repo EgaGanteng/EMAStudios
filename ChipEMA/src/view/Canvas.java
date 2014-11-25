@@ -80,6 +80,7 @@ public class Canvas extends JPanel {
         g.drawImage(img, 0, 0, null);
         if(tamat)
         {
+            g.fillRect(120, 250, 500, 150);
             g.setColor(Color.blue);
             g.setFont(typeFont2);
             g.drawString("DADAAAH TUGAAAS",200,300);
